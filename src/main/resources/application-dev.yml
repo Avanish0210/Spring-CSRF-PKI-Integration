@@ -1,0 +1,22 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: services-router-gateway
+
+# CSRF Protection - DISABLED for development
+csrf:
+  enabled: false
+  token:
+    header-name: X-CSRF-Token
+  public-key-location: classpath:keys/csrf-public-key.pem
+  max-age-seconds: 600
+  issuer: hdp-csrf-issuer
+
+# Logging Configuration
+logging:
+  level:
+    root: DEBUG
+    com.oracle.hospitality.hdp: TRACE
+    org.springframework.cloud.gateway: TRACE

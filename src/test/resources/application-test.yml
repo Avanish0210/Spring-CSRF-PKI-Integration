@@ -1,0 +1,21 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: services-router-gateway
+
+# CSRF Protection - DISABLED for testing
+csrf:
+  enabled: false
+  token:
+    header-name: X-CSRF-Token
+  public-key-location: classpath:keys/csrf-public-key-test.pem
+  max-age-seconds: 600
+  issuer: hdp-csrf-issuer-test
+
+# Logging Configuration
+logging:
+  level:
+    root: INFO
+    com.oracle.hospitality.hdp: DEBUG
