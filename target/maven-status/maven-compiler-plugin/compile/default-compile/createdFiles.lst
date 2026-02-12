@@ -1,0 +1,8 @@
+com\oracle\hospitality\hdp\gateway\service\CsrfTokenValidator.class
+com\oracle\hospitality\hdp\gateway\ServicesRouterGatewayApplication.class
+com\oracle\hospitality\hdp\gateway\config\CsrfSecurityConfig.class
+com\oracle\hospitality\hdp\gateway\model\RequestContext.class
+com\oracle\hospitality\hdp\gateway\common\GatewayConstants.class
+com\oracle\hospitality\hdp\gateway\config\CsrfConfigurationProperties$TokenConfig.class
+com\oracle\hospitality\hdp\gateway\service\CsrfTokenValidator$ValidationResult.class
+com\oracle\hospitality\hdp\gateway\config\CsrfConfigurationProperties.class

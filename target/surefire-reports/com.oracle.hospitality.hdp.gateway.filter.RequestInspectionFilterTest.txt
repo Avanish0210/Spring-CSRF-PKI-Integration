@@ -1,0 +1,16 @@
+-------------------------------------------------------------------------------
+Test set: com.oracle.hospitality.hdp.gateway.filter.RequestInspectionFilterTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 1.658 s <<< FAILURE! -- in com.oracle.hospitality.hdp.gateway.filter.RequestInspectionFilterTest
+com.oracle.hospitality.hdp.gateway.filter.RequestInspectionFilterTest.testMissingCsrfTokenReturns403 -- Time elapsed: 1.477 s <<< ERROR!
+org.mockito.exceptions.misusing.UnnecessaryStubbingException: 
+
+Unnecessary stubbings detected.
+Clean & maintainable test code requires zero unnecessary code.
+Following stubbings are unnecessary (click to navigate to relevant line of code):
+  1. -> at com.oracle.hospitality.hdp.gateway.filter.RequestInspectionFilterTest.setUp(RequestInspectionFilterTest.java:74)
+Please remove unnecessary stubbings or use 'lenient' strictness. More info: javadoc for UnnecessaryStubbingException class.
+	at org.mockito.junit.jupiter.MockitoExtension.afterEach(MockitoExtension.java:197)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+

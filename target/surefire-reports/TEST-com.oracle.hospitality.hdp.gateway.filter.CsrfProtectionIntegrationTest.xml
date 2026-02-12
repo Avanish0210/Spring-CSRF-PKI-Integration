@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.oracle.hospitality.hdp.gateway.filter.CsrfProtectionIntegrationTest" time="15.586" tests="11" errors="0" skipped="0" failures="4">
+  <properties>
+    <property name="java.specification.version" value="21"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.class.path" value="C:\Users\LENOVO\OneDrive\Desktop\project Spring\target\test-classes;C:\Users\LENOVO\OneDrive\Desktop\project Spring\target\classes;C:\Users\LENOVO\.m2\repository\org\springframework\cloud\spring-cloud-starter-gateway\4.2.0\spring-cloud-starter-gateway-4.2.0.jar;C:\Users\LENOVO\.m2\repository\org\springframework\cloud\spring-cloud-starter\4.2.0\spring-cloud-starter-4.2.0.jar;C:\Users\LENOVO\.m2\repository\org\springframework\cloud\spring-cloud-context\4.2.0\spring-cloud-context-4.2.0.jar;C:\Users\LENOVO\.m2\repository\org\springframework\cloud\spring-cloud-commons\4.2.0\spring-cloud-commons-4.2.0.jar;C:\Users\LENOVO\.m2\repository\org\bouncycastle\bcprov-jdk18on\1.78.1\bcprov-jdk18on-1.78.1.jar;C:\Users\LENOVO\.m2\repository\org\springframework\cloud\spring-cloud-gateway-server\4.2.0\spring-cloud-gateway-server-4.2.0.jar;C:\Users\LENOVO\.m2\repository\org\springframework\boot\spring-boot-starter-validation\3.4.0\spring-boot-starter-validation-3.4.0.jar;C:\Users\LENOVO\.m2\repository\org\apache\tomcat\embed\tomcat-embed-el\10.1.33\tomcat-embed-el-10.1.33.jar;C:\Users\LENOVO\.m2\repository\org\hibernate\validator\hibernate-validator\8.0.1.Final\hibernate-validator-8.0.1.Final.jar;C:\Users\LENOVO\.m2\repository\jakarta\validation\jakarta.validation-api\3.0.2\jakarta.validation-api-3.0.2.jar;C:\Users\LENOVO\.m2\repository\org\jboss\logging\jboss-logging\3.6.1.Final\jboss-logging-3.6.1.Final.jar;C:\Users\LENOVO\.m2\repository\com\fasterxml\classmate\1.7.0\classmate-1.7.0.jar;C:\Users\LENOVO\.m2\repository\io\projectreactor\addons\reactor-extra\3.5.2\reactor-extra-3.5.2.jar;C:\Users\LENOVO\.m2\repository\org\springframework\boot\spring-boot-starter-oauth2-resource-server\3.4.0\spring-boot-starter-oauth2-resource-server-3.4.0.jar;C:\Users\LENOVO\.m2\repository\org\springframework\boot\spring-boot-starter\3.4.0\spring-boot-starter-3.4.0.jar;C:\Users\LENOVO\.m2\repository\org\springframework\boot\spring-boot\3.4.0\spring-boot-3.4.0.jar;C:\Users\LENOVO\.m2\repository\org\springframework\boot\spring-boot-autoconfigure\3.4.0\spring-boot-autoconfigure-3.4.0.jar;C:\Users\LENOVO\.m2\repository\org\springframework\boot\spring-boot-starter-logging\3.4.0\spring-boot-starter-logging-3.4.0.jar;C:\Users\LENOVO\.m2\repository\ch\qos\logback\logback-classic\1.5.12\logback-classic-1.5.12.jar;C:\Users\LENOVO\.m2\repository\ch\qos\logback\logback-core\1.5.12\logback-core-1.5.12.jar;C:\Users\LENOVO\.m2\repository\org\apache\logging\log4j\log4j-to-slf4j\2.24.1\log4j-to-slf4j-2.24.1.jar;C:\Users\LENOVO\.m2\repository\org\apache\logging\log4j\log4j-api\2.24.1\log4j-api-2.24.1.jar;C:\Users\LENOVO\.m2\repository\org\slf4j\jul-to-slf4j\2.0.16\jul-to-slf4j-2.0.16.jar;C:\Users\LENOVO\.m2\repository\jakarta\annotation\jakarta.annotation-api\2.1.1\jakarta.annotation-api-2.1.1.jar;C:\Users\LENOVO\.m2\repository\org\yaml\snakeyaml\2.3\snakeyaml-2.3.jar;C:\Users\LENOVO\.m2\repository\org\springframework\security\spring-security-config\6.4.1\spring-security-config-6.4.1.jar;C:\Users\LENOVO\.m2\repository\org\springframework\spring-aop\6.2.0\spring-aop-6.2.0.jar;C:\Users\LENOVO\.m2\repository\org\springframework\spring-beans\6.2.0\spring-beans-6.2.0.jar;C:\Users\LENOVO\.m2\repository\org\springframework\spring-context\6.2.0\spring-context-6.2.0.jar;C:\Users\LENOVO\.m2\repository\org\springframework\security\spring-security-core\6.4.1\spring-security-core-6.4.1.jar;C:\Users\LENOVO\.m2\repository\org\springframework\security\spring-security-crypto\6.4.1\spring-security-crypto-6.4.1.jar;C:\Users\LENOVO\.m2\repository\org\springframework\spring-expression\6.2.0\spring-expression-6.2.0.jar;C:\Users\LENOVO\.m2\repository\org\springframework\security\spring-security-oauth2-resource-server\6.4.1\spring-security-oauth2-resource-server-6.4.1.jar;C:\Users\LENOVO\.m2\repository\org\springframework\security\spring-security-oauth2-core\6.4.1\spring-security-oauth2-core-6.4.1.jar;C:\Users\LENOVO\.m2\repository\org\springframework\security\spring-security-web\6.4.1\spring-security-web-6.4.1.jar;C:\Users\LENOVO\.m2\repository\org\springframework\security\spring-security-oauth2-jose\6.4.1\spring-security-oauth2-jose-6.4.1.jar;C:\Users\LENOVO\.m2\repository\com\nimbusds\nimbus-jose-jwt\9.37.3\nimbus-jose-jwt-9.37.3.jar;C:\Users\LENOVO\.m2\repository\com\github\stephenc\jcip\jcip-annotations\1.0-1\jcip-annotations-1.0-1.jar;C:\Users\LENOVO\.m2\repository\org\springframework\boot\spring-boot-starter-actuator\3.4.0\spring-boot-starter-actuator-3.4.0.jar;C:\Users\LENOVO\.m2\repository\org\springframework\boot\spring-boot-actuator-autoconfigure\3.4.0\spring-boot-actuator-autoconfigure-3.4.0.jar;C:\Users\LENOVO\.m2\repository\org\springframework\boot\spring-boot-actuator\3.4.0\spring-boot-actuator-3.4.0.jar;C:\Users\LENOVO\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jsr310\2.18.1\jackson-datatype-jsr310-2.18.1.jar;C:\Users\LENOVO\.m2\repository\io\micrometer\micrometer-observation\1.14.1\micrometer-observation-1.14.1.jar;C:\Users\LENOVO\.m2\repository\io\micrometer\micrometer-commons\1.14.1\micrometer-commons-1.14.1.jar;C:\Users\LENOVO\.m2\repository\io\micrometer\micrometer-jakarta9\1.14.1\micrometer-jakarta9-1.14.1.jar;C:\Users\LENOVO\.m2\repository\io\micrometer\micrometer-core\1.14.1\micrometer-core-1.14.1.jar;C:\Users\LENOVO\.m2\repository\org\hdrhistogram\HdrHistogram\2.2.2\HdrHistogram-2.2.2.jar;C:\Users\LENOVO\.m2\repository\org\latencyutils\LatencyUtils\2.0.3\LatencyUtils-2.0.3.jar;C:\Users\LENOVO\.m2\repository\io\jsonwebtoken\jjwt-api\0.12.6\jjwt-api-0.12.6.jar;C:\Users\LENOVO\.m2\repository\io\jsonwebtoken\jjwt-impl\0.12.6\jjwt-impl-0.12.6.jar;C:\Users\LENOVO\.m2\repository\io\jsonwebtoken\jjwt-jackson\0.12.6\jjwt-jackson-0.12.6.jar;C:\Users\LENOVO\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.18.1\jackson-databind-2.18.1.jar;C:\Users\LENOVO\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.18.1\jackson-annotations-2.18.1.jar;C:\Users\LENOVO\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.18.1\jackson-core-2.18.1.jar;C:\Users\LENOVO\.m2\repository\org\projectlombok\lombok\1.18.36\lombok-1.18.36.jar;C:\Users\LENOVO\.m2\repository\org\jspecify\jspecify\1.0.0\jspecify-1.0.0.jar;C:\Users\LENOVO\.m2\repository\org\springframework\boot\spring-boot-starter-test\3.4.0\spring-boot-starter-test-3.4.0.jar;C:\Users\LENOVO\.m2\repository\org\springframework\boot\spring-boot-test\3.4.0\spring-boot-test-3.4.0.jar;C:\Users\LENOVO\.m2\repository\org\springframework\boot\spring-boot-test-autoconfigure\3.4.0\spring-boot-test-autoconfigure-3.4.0.jar;C:\Users\LENOVO\.m2\repository\com\jayway\jsonpath\json-path\2.9.0\json-path-2.9.0.jar;C:\Users\LENOVO\.m2\repository\org\slf4j\slf4j-api\2.0.16\slf4j-api-2.0.16.jar;C:\Users\LENOVO\.m2\repository\jakarta\xml\bind\jakarta.xml.bind-api\4.0.2\jakarta.xml.bind-api-4.0.2.jar;C:\Users\LENOVO\.m2\repository\jakarta\activation\jakarta.activation-api\2.1.3\jakarta.activation-api-2.1.3.jar;C:\Users\LENOVO\.m2\repository\net\minidev\json-smart\2.5.1\json-smart-2.5.1.jar;C:\Users\LENOVO\.m2\repository\net\minidev\accessors-smart\2.5.1\accessors-smart-2.5.1.jar;C:\Users\LENOVO\.m2\repository\org\ow2\asm\asm\9.6\asm-9.6.jar;C:\Users\LENOVO\.m2\repository\org\assertj\assertj-core\3.26.3\assertj-core-3.26.3.jar;C:\Users\LENOVO\.m2\repository\net\bytebuddy\byte-buddy\1.15.10\byte-buddy-1.15.10.jar;C:\Users\LENOVO\.m2\repository\org\awaitility\awaitility\4.2.2\awaitility-4.2.2.jar;C:\Users\LENOVO\.m2\repository\org\hamcrest\hamcrest\2.2\hamcrest-2.2.jar;C:\Users\LENOVO\.m2\repository\org\junit\jupiter\junit-jupiter\5.11.3\junit-jupiter-5.11.3.jar;C:\Users\LENOVO\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.11.3\junit-jupiter-api-5.11.3.jar;C:\Users\LENOVO\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\LENOVO\.m2\repository\org\junit\platform\junit-platform-commons\1.11.3\junit-platform-commons-1.11.3.jar;C:\Users\LENOVO\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\LENOVO\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.11.3\junit-jupiter-params-5.11.3.jar;C:\Users\LENOVO\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.11.3\junit-jupiter-engine-5.11.3.jar;C:\Users\LENOVO\.m2\repository\org\junit\platform\junit-platform-engine\1.11.3\junit-platform-engine-1.11.3.jar;C:\Users\LENOVO\.m2\repository\org\mockito\mockito-core\5.14.2\mockito-core-5.14.2.jar;C:\Users\LENOVO\.m2\repository\net\bytebuddy\byte-buddy-agent\1.15.10\byte-buddy-agent-1.15.10.jar;C:\Users\LENOVO\.m2\repository\org\objenesis\objenesis\3.3\objenesis-3.3.jar;C:\Users\LENOVO\.m2\repository\org\mockito\mockito-junit-jupiter\5.14.2\mockito-junit-jupiter-5.14.2.jar;C:\Users\LENOVO\.m2\repository\org\skyscreamer\jsonassert\1.5.3\jsonassert-1.5.3.jar;C:\Users\LENOVO\.m2\repository\com\vaadin\external\google\android-json\0.0.20131108.vaadin1\android-json-0.0.20131108.vaadin1.jar;C:\Users\LENOVO\.m2\repository\org\springframework\spring-core\6.2.0\spring-core-6.2.0.jar;C:\Users\LENOVO\.m2\repository\org\springframework\spring-jcl\6.2.0\spring-jcl-6.2.0.jar;C:\Users\LENOVO\.m2\repository\org\springframework\spring-test\6.2.0\spring-test-6.2.0.jar;C:\Users\LENOVO\.m2\repository\org\xmlunit\xmlunit-core\2.10.0\xmlunit-core-2.10.0.jar;C:\Users\LENOVO\.m2\repository\io\projectreactor\reactor-test\3.7.0\reactor-test-3.7.0.jar;C:\Users\LENOVO\.m2\repository\io\projectreactor\reactor-core\3.7.0\reactor-core-3.7.0.jar;C:\Users\LENOVO\.m2\repository\org\reactivestreams\reactive-streams\1.0.4\reactive-streams-1.0.4.jar;C:\Users\LENOVO\.m2\repository\org\springframework\boot\spring-boot-starter-webflux\3.4.0\spring-boot-starter-webflux-3.4.0.jar;C:\Users\LENOVO\.m2\repository\org\springframework\boot\spring-boot-starter-json\3.4.0\spring-boot-starter-json-3.4.0.jar;C:\Users\LENOVO\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jdk8\2.18.1\jackson-datatype-jdk8-2.18.1.jar;C:\Users\LENOVO\.m2\repository\com\fasterxml\jackson\module\jackson-module-parameter-names\2.18.1\jackson-module-parameter-names-2.18.1.jar;C:\Users\LENOVO\.m2\repository\org\springframework\boot\spring-boot-starter-reactor-netty\3.4.0\spring-boot-starter-reactor-netty-3.4.0.jar;C:\Users\LENOVO\.m2\repository\io\projectreactor\netty\reactor-netty-http\1.2.0\reactor-netty-http-1.2.0.jar;C:\Users\LENOVO\.m2\repository\io\netty\netty-codec-http\4.1.115.Final\netty-codec-http-4.1.115.Final.jar;C:\Users\LENOVO\.m2\repository\io\netty\netty-common\4.1.115.Final\netty-common-4.1.115.Final.jar;C:\Users\LENOVO\.m2\repository\io\netty\netty-buffer\4.1.115.Final\netty-buffer-4.1.115.Final.jar;C:\Users\LENOVO\.m2\repository\io\netty\netty-transport\4.1.115.Final\netty-transport-4.1.115.Final.jar;C:\Users\LENOVO\.m2\repository\io\netty\netty-codec\4.1.115.Final\netty-codec-4.1.115.Final.jar;C:\Users\LENOVO\.m2\repository\io\netty\netty-handler\4.1.115.Final\netty-handler-4.1.115.Final.jar;C:\Users\LENOVO\.m2\repository\io\netty\netty-codec-http2\4.1.115.Final\netty-codec-http2-4.1.115.Final.jar;C:\Users\LENOVO\.m2\repository\io\netty\netty-resolver-dns\4.1.115.Final\netty-resolver-dns-4.1.115.Final.jar;C:\Users\LENOVO\.m2\repository\io\netty\netty-resolver\4.1.115.Final\netty-resolver-4.1.115.Final.jar;C:\Users\LENOVO\.m2\repository\io\netty\netty-codec-dns\4.1.115.Final\netty-codec-dns-4.1.115.Final.jar;C:\Users\LENOVO\.m2\repository\io\netty\netty-resolver-dns-native-macos\4.1.115.Final\netty-resolver-dns-native-macos-4.1.115.Final-osx-x86_64.jar;C:\Users\LENOVO\.m2\repository\io\netty\netty-resolver-dns-classes-macos\4.1.115.Final\netty-resolver-dns-classes-macos-4.1.115.Final.jar;C:\Users\LENOVO\.m2\repository\io\netty\netty-transport-native-epoll\4.1.115.Final\netty-transport-native-epoll-4.1.115.Final-linux-x86_64.jar;C:\Users\LENOVO\.m2\repository\io\netty\netty-transport-native-unix-common\4.1.115.Final\netty-transport-native-unix-common-4.1.115.Final.jar;C:\Users\LENOVO\.m2\repository\io\netty\netty-transport-classes-epoll\4.1.115.Final\netty-transport-classes-epoll-4.1.115.Final.jar;C:\Users\LENOVO\.m2\repository\io\projectreactor\netty\reactor-netty-core\1.2.0\reactor-netty-core-1.2.0.jar;C:\Users\LENOVO\.m2\repository\io\netty\netty-handler-proxy\4.1.115.Final\netty-handler-proxy-4.1.115.Final.jar;C:\Users\LENOVO\.m2\repository\io\netty\netty-codec-socks\4.1.115.Final\netty-codec-socks-4.1.115.Final.jar;C:\Users\LENOVO\.m2\repository\org\springframework\spring-web\6.2.0\spring-web-6.2.0.jar;C:\Users\LENOVO\.m2\repository\org\springframework\spring-webflux\6.2.0\spring-webflux-6.2.0.jar;"/>
+    <property name="java.vm.vendor" value="BellSoft"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="https://bell-sw.com/"/>
+    <property name="user.timezone" value="Asia/Calcutta"/>
+    <property name="org.jboss.logging.provider" value="slf4j"/>
+    <property name="os.name" value="Windows 11"/>
+    <property name="java.vm.specification.version" value="21"/>
+    <property name="APPLICATION_NAME" value="services-router-gateway"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="IN"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\BellSoft\LibericaJDK-21\bin"/>
+    <property name="sun.java.command" value="C:\Users\LENOVO\AppData\Local\Temp\surefire5247208842163099483\surefirebooter-20260212162347717_3.jar C:\Users\LENOVO\AppData\Local\Temp\surefire5247208842163099483 2026-02-12T16-23-47_604-jvmRun1 surefire-20260212162347717_1tmp surefire_0-20260212162347717_2tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="test" value="CsrfProtectionIntegrationTest"/>
+    <property name="surefire.test.class.path" value="C:\Users\LENOVO\OneDrive\Desktop\project Spring\target\test-classes;C:\Users\LENOVO\OneDrive\Desktop\project Spring\target\classes;C:\Users\LENOVO\.m2\repository\org\springframework\cloud\spring-cloud-starter-gateway\4.2.0\spring-cloud-starter-gateway-4.2.0.jar;C:\Users\LENOVO\.m2\repository\org\springframework\cloud\spring-cloud-starter\4.2.0\spring-cloud-starter-4.2.0.jar;C:\Users\LENOVO\.m2\repository\org\springframework\cloud\spring-cloud-context\4.2.0\spring-cloud-context-4.2.0.jar;C:\Users\LENOVO\.m2\repository\org\springframework\cloud\spring-cloud-commons\4.2.0\spring-cloud-commons-4.2.0.jar;C:\Users\LENOVO\.m2\repository\org\bouncycastle\bcprov-jdk18on\1.78.1\bcprov-jdk18on-1.78.1.jar;C:\Users\LENOVO\.m2\repository\org\springframework\cloud\spring-cloud-gateway-server\4.2.0\spring-cloud-gateway-server-4.2.0.jar;C:\Users\LENOVO\.m2\repository\org\springframework\boot\spring-boot-starter-validation\3.4.0\spring-boot-starter-validation-3.4.0.jar;C:\Users\LENOVO\.m2\repository\org\apache\tomcat\embed\tomcat-embed-el\10.1.33\tomcat-embed-el-10.1.33.jar;C:\Users\LENOVO\.m2\repository\org\hibernate\validator\hibernate-validator\8.0.1.Final\hibernate-validator-8.0.1.Final.jar;C:\Users\LENOVO\.m2\repository\jakarta\validation\jakarta.validation-api\3.0.2\jakarta.validation-api-3.0.2.jar;C:\Users\LENOVO\.m2\repository\org\jboss\logging\jboss-logging\3.6.1.Final\jboss-logging-3.6.1.Final.jar;C:\Users\LENOVO\.m2\repository\com\fasterxml\classmate\1.7.0\classmate-1.7.0.jar;C:\Users\LENOVO\.m2\repository\io\projectreactor\addons\reactor-extra\3.5.2\reactor-extra-3.5.2.jar;C:\Users\LENOVO\.m2\repository\org\springframework\boot\spring-boot-starter-oauth2-resource-server\3.4.0\spring-boot-starter-oauth2-resource-server-3.4.0.jar;C:\Users\LENOVO\.m2\repository\org\springframework\boot\spring-boot-starter\3.4.0\spring-boot-starter-3.4.0.jar;C:\Users\LENOVO\.m2\repository\org\springframework\boot\spring-boot\3.4.0\spring-boot-3.4.0.jar;C:\Users\LENOVO\.m2\repository\org\springframework\boot\spring-boot-autoconfigure\3.4.0\spring-boot-autoconfigure-3.4.0.jar;C:\Users\LENOVO\.m2\repository\org\springframework\boot\spring-boot-starter-logging\3.4.0\spring-boot-starter-logging-3.4.0.jar;C:\Users\LENOVO\.m2\repository\ch\qos\logback\logback-classic\1.5.12\logback-classic-1.5.12.jar;C:\Users\LENOVO\.m2\repository\ch\qos\logback\logback-core\1.5.12\logback-core-1.5.12.jar;C:\Users\LENOVO\.m2\repository\org\apache\logging\log4j\log4j-to-slf4j\2.24.1\log4j-to-slf4j-2.24.1.jar;C:\Users\LENOVO\.m2\repository\org\apache\logging\log4j\log4j-api\2.24.1\log4j-api-2.24.1.jar;C:\Users\LENOVO\.m2\repository\org\slf4j\jul-to-slf4j\2.0.16\jul-to-slf4j-2.0.16.jar;C:\Users\LENOVO\.m2\repository\jakarta\annotation\jakarta.annotation-api\2.1.1\jakarta.annotation-api-2.1.1.jar;C:\Users\LENOVO\.m2\repository\org\yaml\snakeyaml\2.3\snakeyaml-2.3.jar;C:\Users\LENOVO\.m2\repository\org\springframework\security\spring-security-config\6.4.1\spring-security-config-6.4.1.jar;C:\Users\LENOVO\.m2\repository\org\springframework\spring-aop\6.2.0\spring-aop-6.2.0.jar;C:\Users\LENOVO\.m2\repository\org\springframework\spring-beans\6.2.0\spring-beans-6.2.0.jar;C:\Users\LENOVO\.m2\repository\org\springframework\spring-context\6.2.0\spring-context-6.2.0.jar;C:\Users\LENOVO\.m2\repository\org\springframework\security\spring-security-core\6.4.1\spring-security-core-6.4.1.jar;C:\Users\LENOVO\.m2\repository\org\springframework\security\spring-security-crypto\6.4.1\spring-security-crypto-6.4.1.jar;C:\Users\LENOVO\.m2\repository\org\springframework\spring-expression\6.2.0\spring-expression-6.2.0.jar;C:\Users\LENOVO\.m2\repository\org\springframework\security\spring-security-oauth2-resource-server\6.4.1\spring-security-oauth2-resource-server-6.4.1.jar;C:\Users\LENOVO\.m2\repository\org\springframework\security\spring-security-oauth2-core\6.4.1\spring-security-oauth2-core-6.4.1.jar;C:\Users\LENOVO\.m2\repository\org\springframework\security\spring-security-web\6.4.1\spring-security-web-6.4.1.jar;C:\Users\LENOVO\.m2\repository\org\springframework\security\spring-security-oauth2-jose\6.4.1\spring-security-oauth2-jose-6.4.1.jar;C:\Users\LENOVO\.m2\repository\com\nimbusds\nimbus-jose-jwt\9.37.3\nimbus-jose-jwt-9.37.3.jar;C:\Users\LENOVO\.m2\repository\com\github\stephenc\jcip\jcip-annotations\1.0-1\jcip-annotations-1.0-1.jar;C:\Users\LENOVO\.m2\repository\org\springframework\boot\spring-boot-starter-actuator\3.4.0\spring-boot-starter-actuator-3.4.0.jar;C:\Users\LENOVO\.m2\repository\org\springframework\boot\spring-boot-actuator-autoconfigure\3.4.0\spring-boot-actuator-autoconfigure-3.4.0.jar;C:\Users\LENOVO\.m2\repository\org\springframework\boot\spring-boot-actuator\3.4.0\spring-boot-actuator-3.4.0.jar;C:\Users\LENOVO\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jsr310\2.18.1\jackson-datatype-jsr310-2.18.1.jar;C:\Users\LENOVO\.m2\repository\io\micrometer\micrometer-observation\1.14.1\micrometer-observation-1.14.1.jar;C:\Users\LENOVO\.m2\repository\io\micrometer\micrometer-commons\1.14.1\micrometer-commons-1.14.1.jar;C:\Users\LENOVO\.m2\repository\io\micrometer\micrometer-jakarta9\1.14.1\micrometer-jakarta9-1.14.1.jar;C:\Users\LENOVO\.m2\repository\io\micrometer\micrometer-core\1.14.1\micrometer-core-1.14.1.jar;C:\Users\LENOVO\.m2\repository\org\hdrhistogram\HdrHistogram\2.2.2\HdrHistogram-2.2.2.jar;C:\Users\LENOVO\.m2\repository\org\latencyutils\LatencyUtils\2.0.3\LatencyUtils-2.0.3.jar;C:\Users\LENOVO\.m2\repository\io\jsonwebtoken\jjwt-api\0.12.6\jjwt-api-0.12.6.jar;C:\Users\LENOVO\.m2\repository\io\jsonwebtoken\jjwt-impl\0.12.6\jjwt-impl-0.12.6.jar;C:\Users\LENOVO\.m2\repository\io\jsonwebtoken\jjwt-jackson\0.12.6\jjwt-jackson-0.12.6.jar;C:\Users\LENOVO\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.18.1\jackson-databind-2.18.1.jar;C:\Users\LENOVO\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.18.1\jackson-annotations-2.18.1.jar;C:\Users\LENOVO\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.18.1\jackson-core-2.18.1.jar;C:\Users\LENOVO\.m2\repository\org\projectlombok\lombok\1.18.36\lombok-1.18.36.jar;C:\Users\LENOVO\.m2\repository\org\jspecify\jspecify\1.0.0\jspecify-1.0.0.jar;C:\Users\LENOVO\.m2\repository\org\springframework\boot\spring-boot-starter-test\3.4.0\spring-boot-starter-test-3.4.0.jar;C:\Users\LENOVO\.m2\repository\org\springframework\boot\spring-boot-test\3.4.0\spring-boot-test-3.4.0.jar;C:\Users\LENOVO\.m2\repository\org\springframework\boot\spring-boot-test-autoconfigure\3.4.0\spring-boot-test-autoconfigure-3.4.0.jar;C:\Users\LENOVO\.m2\repository\com\jayway\jsonpath\json-path\2.9.0\json-path-2.9.0.jar;C:\Users\LENOVO\.m2\repository\org\slf4j\slf4j-api\2.0.16\slf4j-api-2.0.16.jar;C:\Users\LENOVO\.m2\repository\jakarta\xml\bind\jakarta.xml.bind-api\4.0.2\jakarta.xml.bind-api-4.0.2.jar;C:\Users\LENOVO\.m2\repository\jakarta\activation\jakarta.activation-api\2.1.3\jakarta.activation-api-2.1.3.jar;C:\Users\LENOVO\.m2\repository\net\minidev\json-smart\2.5.1\json-smart-2.5.1.jar;C:\Users\LENOVO\.m2\repository\net\minidev\accessors-smart\2.5.1\accessors-smart-2.5.1.jar;C:\Users\LENOVO\.m2\repository\org\ow2\asm\asm\9.6\asm-9.6.jar;C:\Users\LENOVO\.m2\repository\org\assertj\assertj-core\3.26.3\assertj-core-3.26.3.jar;C:\Users\LENOVO\.m2\repository\net\bytebuddy\byte-buddy\1.15.10\byte-buddy-1.15.10.jar;C:\Users\LENOVO\.m2\repository\org\awaitility\awaitility\4.2.2\awaitility-4.2.2.jar;C:\Users\LENOVO\.m2\repository\org\hamcrest\hamcrest\2.2\hamcrest-2.2.jar;C:\Users\LENOVO\.m2\repository\org\junit\jupiter\junit-jupiter\5.11.3\junit-jupiter-5.11.3.jar;C:\Users\LENOVO\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.11.3\junit-jupiter-api-5.11.3.jar;C:\Users\LENOVO\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\LENOVO\.m2\repository\org\junit\platform\junit-platform-commons\1.11.3\junit-platform-commons-1.11.3.jar;C:\Users\LENOVO\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\LENOVO\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.11.3\junit-jupiter-params-5.11.3.jar;C:\Users\LENOVO\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.11.3\junit-jupiter-engine-5.11.3.jar;C:\Users\LENOVO\.m2\repository\org\junit\platform\junit-platform-engine\1.11.3\junit-platform-engine-1.11.3.jar;C:\Users\LENOVO\.m2\repository\org\mockito\mockito-core\5.14.2\mockito-core-5.14.2.jar;C:\Users\LENOVO\.m2\repository\net\bytebuddy\byte-buddy-agent\1.15.10\byte-buddy-agent-1.15.10.jar;C:\Users\LENOVO\.m2\repository\org\objenesis\objenesis\3.3\objenesis-3.3.jar;C:\Users\LENOVO\.m2\repository\org\mockito\mockito-junit-jupiter\5.14.2\mockito-junit-jupiter-5.14.2.jar;C:\Users\LENOVO\.m2\repository\org\skyscreamer\jsonassert\1.5.3\jsonassert-1.5.3.jar;C:\Users\LENOVO\.m2\repository\com\vaadin\external\google\android-json\0.0.20131108.vaadin1\android-json-0.0.20131108.vaadin1.jar;C:\Users\LENOVO\.m2\repository\org\springframework\spring-core\6.2.0\spring-core-6.2.0.jar;C:\Users\LENOVO\.m2\repository\org\springframework\spring-jcl\6.2.0\spring-jcl-6.2.0.jar;C:\Users\LENOVO\.m2\repository\org\springframework\spring-test\6.2.0\spring-test-6.2.0.jar;C:\Users\LENOVO\.m2\repository\org\xmlunit\xmlunit-core\2.10.0\xmlunit-core-2.10.0.jar;C:\Users\LENOVO\.m2\repository\io\projectreactor\reactor-test\3.7.0\reactor-test-3.7.0.jar;C:\Users\LENOVO\.m2\repository\io\projectreactor\reactor-core\3.7.0\reactor-core-3.7.0.jar;C:\Users\LENOVO\.m2\repository\org\reactivestreams\reactive-streams\1.0.4\reactive-streams-1.0.4.jar;C:\Users\LENOVO\.m2\repository\org\springframework\boot\spring-boot-starter-webflux\3.4.0\spring-boot-starter-webflux-3.4.0.jar;C:\Users\LENOVO\.m2\repository\org\springframework\boot\spring-boot-starter-json\3.4.0\spring-boot-starter-json-3.4.0.jar;C:\Users\LENOVO\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jdk8\2.18.1\jackson-datatype-jdk8-2.18.1.jar;C:\Users\LENOVO\.m2\repository\com\fasterxml\jackson\module\jackson-module-parameter-names\2.18.1\jackson-module-parameter-names-2.18.1.jar;C:\Users\LENOVO\.m2\repository\org\springframework\boot\spring-boot-starter-reactor-netty\3.4.0\spring-boot-starter-reactor-netty-3.4.0.jar;C:\Users\LENOVO\.m2\repository\io\projectreactor\netty\reactor-netty-http\1.2.0\reactor-netty-http-1.2.0.jar;C:\Users\LENOVO\.m2\repository\io\netty\netty-codec-http\4.1.115.Final\netty-codec-http-4.1.115.Final.jar;C:\Users\LENOVO\.m2\repository\io\netty\netty-common\4.1.115.Final\netty-common-4.1.115.Final.jar;C:\Users\LENOVO\.m2\repository\io\netty\netty-buffer\4.1.115.Final\netty-buffer-4.1.115.Final.jar;C:\Users\LENOVO\.m2\repository\io\netty\netty-transport\4.1.115.Final\netty-transport-4.1.115.Final.jar;C:\Users\LENOVO\.m2\repository\io\netty\netty-codec\4.1.115.Final\netty-codec-4.1.115.Final.jar;C:\Users\LENOVO\.m2\repository\io\netty\netty-handler\4.1.115.Final\netty-handler-4.1.115.Final.jar;C:\Users\LENOVO\.m2\repository\io\netty\netty-codec-http2\4.1.115.Final\netty-codec-http2-4.1.115.Final.jar;C:\Users\LENOVO\.m2\repository\io\netty\netty-resolver-dns\4.1.115.Final\netty-resolver-dns-4.1.115.Final.jar;C:\Users\LENOVO\.m2\repository\io\netty\netty-resolver\4.1.115.Final\netty-resolver-4.1.115.Final.jar;C:\Users\LENOVO\.m2\repository\io\netty\netty-codec-dns\4.1.115.Final\netty-codec-dns-4.1.115.Final.jar;C:\Users\LENOVO\.m2\repository\io\netty\netty-resolver-dns-native-macos\4.1.115.Final\netty-resolver-dns-native-macos-4.1.115.Final-osx-x86_64.jar;C:\Users\LENOVO\.m2\repository\io\netty\netty-resolver-dns-classes-macos\4.1.115.Final\netty-resolver-dns-classes-macos-4.1.115.Final.jar;C:\Users\LENOVO\.m2\repository\io\netty\netty-transport-native-epoll\4.1.115.Final\netty-transport-native-epoll-4.1.115.Final-linux-x86_64.jar;C:\Users\LENOVO\.m2\repository\io\netty\netty-transport-native-unix-common\4.1.115.Final\netty-transport-native-unix-common-4.1.115.Final.jar;C:\Users\LENOVO\.m2\repository\io\netty\netty-transport-classes-epoll\4.1.115.Final\netty-transport-classes-epoll-4.1.115.Final.jar;C:\Users\LENOVO\.m2\repository\io\projectreactor\netty\reactor-netty-core\1.2.0\reactor-netty-core-1.2.0.jar;C:\Users\LENOVO\.m2\repository\io\netty\netty-handler-proxy\4.1.115.Final\netty-handler-proxy-4.1.115.Final.jar;C:\Users\LENOVO\.m2\repository\io\netty\netty-codec-socks\4.1.115.Final\netty-codec-socks-4.1.115.Final.jar;C:\Users\LENOVO\.m2\repository\org\springframework\spring-web\6.2.0\spring-web-6.2.0.jar;C:\Users\LENOVO\.m2\repository\org\springframework\spring-webflux\6.2.0\spring-webflux-6.2.0.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\LENOVO"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2025-10-21"/>
+    <property name="java.home" value="C:\Program Files\BellSoft\LibericaJDK-21"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="C:\Users\LENOVO\OneDrive\Desktop\project Spring"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="FILE_LOG_CHARSET" value="UTF-8"/>
+    <property name="java.awt.headless" value="true"/>
+    <property name="surefire.real.class.path" value="C:\Users\LENOVO\AppData\Local\Temp\surefire5247208842163099483\surefirebooter-20260212162347717_3.jar"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="21.0.9+11-LTS"/>
+    <property name="user.name" value="LENOVO"/>
+    <property name="stdout.encoding" value="Cp1252"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="FILE_LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="localRepository" value="C:\Users\LENOVO\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://bell-sw.com/support"/>
+    <property name="java.io.tmpdir" value="C:\Users\LENOVO\AppData\Local\Temp\"/>
+    <property name="java.version" value="21.0.9"/>
+    <property name="user.dir" value="C:\Users\LENOVO\OneDrive\Desktop\project Spring"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="PID" value="2452"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="CONSOLE_LOG_CHARSET" value="UTF-8"/>
+    <property name="native.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Program Files\BellSoft\LibericaJDK-21\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\BellSoft\LibericaJDK-21\bin\;C:\Program Files (x86)\Common Files\Oracle\Java\java8path;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Python313\Scripts\;C:\Python313\;C:\Program Files\Eclipse Adoptium\jdk-17.0.13.11-hotspot\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Program Files\dotnet\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Users\avanish0210\AppData\Local\Programs\Python\Python3x\Scripts;C:\Program Files\apache-maven-3.9.11\bin;C:\Program Files\gradle-6.6\bin;C:\Program Files\Docker\Docker\resources\bin;C:\Users\LENOVO\.cargo\bin;C:\Users\LENOVO\AppData\Local\Microsoft\WindowsApps;C:\Users\LENOVO\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\LENOVO\AppData\Roaming\npm;C:\Users\LENOVO\AppData\Local\Microsoft\WinGet\Packages\Schniz.fnm_Microsoft.Winget.Source_8wekyb3d8bbwe;C:\msys64\ucrt64\bin;C:\Users\LENOVO\.dotnet\tools;C:\Program Files\JetBrains\IntelliJ IDEA 2025.2.3\bin;C:\Users\LENOVO\AppData\Local\JetBrains\Toolbox\scripts;C:\Users\LENOVO\AppData\Local\Programs\Antigravity\bin;c:\Users\LENOVO\.antigravity\extensions\vscjava.vscode-java-debug-0.58.5-universal\bundled\scripts\noConfigScripts;."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="stderr.encoding" value="Cp1252"/>
+    <property name="java.vendor" value="BellSoft"/>
+    <property name="java.vm.version" value="21.0.9+11-LTS"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="65.0"/>
+    <property name="CONSOLE_LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss} - %msg%n"/>
+    <property name="LOGGED_APPLICATION_NAME" value="[services-router-gateway] "/>
+  </properties>
+  <testcase name="testGetRequestDoesNotRequireCsrfToken" classname="com.oracle.hospitality.hdp.gateway.filter.CsrfProtectionIntegrationTest" time="3.602">
+    <failure message="Status expected:&lt;404 NOT_FOUND&gt; but was:&lt;401 UNAUTHORIZED&gt;" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: Status expected:<404 NOT_FOUND> but was:<401 UNAUTHORIZED>
+	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:61)
+	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:128)
+	at org.springframework.test.web.reactive.server.StatusAssertions.lambda$assertStatusAndReturn$4(StatusAssertions.java:236)
+	at org.springframework.test.web.reactive.server.ExchangeResult.assertWithDiagnostics(ExchangeResult.java:232)
+	at org.springframework.test.web.reactive.server.StatusAssertions.assertStatusAndReturn(StatusAssertions.java:236)
+	at org.springframework.test.web.reactive.server.StatusAssertions.isNotFound(StatusAssertions.java:153)
+	at com.oracle.hospitality.hdp.gateway.filter.CsrfProtectionIntegrationTest.testGetRequestDoesNotRequireCsrfToken(CsrfProtectionIntegrationTest.java:54)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+]]></failure>
+    <system-out><![CDATA[16:23:48.473 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.oracle.hospitality.hdp.gateway.filter.CsrfProtectionIntegrationTest]: CsrfProtectionIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+16:23:48.597 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.oracle.hospitality.hdp.gateway.ServicesRouterGatewayApplication for test class com.oracle.hospitality.hdp.gateway.filter.CsrfProtectionIntegrationTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.4.0)
+
+2026-02-12 16:23:49 - Starting CsrfProtectionIntegrationTest using Java 21.0.9 with PID 2452 (started by LENOVO in C:\Users\LENOVO\OneDrive\Desktop\project Spring)
+2026-02-12 16:23:49 - Running with Spring Boot v3.4.0, Spring v6.2.0
+2026-02-12 16:23:49 - The following 1 profile is active: "test"
+2026-02-12 16:23:50 - BeanFactory id=08e7bc56-62c6-3f41-bac0-e63554b54d0d
+2026-02-12 16:23:50 - Loading public key from: classpath:keys/csrf-public-key.pem
+2026-02-12 16:23:50 - Successfully loaded RSA public key for CSRF validation
+2026-02-12 16:23:52 - Routes supplied from Gateway Properties: [RouteDefinition{id='example-service', predicates=[PredicateDefinition{name='Path', args={_genkey_0=/api/**}}], filters=[FilterDefinition{name='StripPrefix', args={_genkey_0=1}}], uri=http://localhost:8081, order=0, metadata={}, enabled=true}]
+2026-02-12 16:23:54 - Loaded RoutePredicateFactory [After]
+2026-02-12 16:23:54 - Loaded RoutePredicateFactory [Before]
+2026-02-12 16:23:54 - Loaded RoutePredicateFactory [Between]
+2026-02-12 16:23:54 - Loaded RoutePredicateFactory [Cookie]
+2026-02-12 16:23:54 - Loaded RoutePredicateFactory [Header]
+2026-02-12 16:23:54 - Loaded RoutePredicateFactory [Host]
+2026-02-12 16:23:54 - Loaded RoutePredicateFactory [Method]
+2026-02-12 16:23:54 - Loaded RoutePredicateFactory [Path]
+2026-02-12 16:23:54 - Loaded RoutePredicateFactory [Query]
+2026-02-12 16:23:54 - Loaded RoutePredicateFactory [ReadBody]
+2026-02-12 16:23:54 - Loaded RoutePredicateFactory [RemoteAddr]
+2026-02-12 16:23:54 - Loaded RoutePredicateFactory [XForwardedRemoteAddr]
+2026-02-12 16:23:54 - Loaded RoutePredicateFactory [Weight]
+2026-02-12 16:23:54 - Loaded RoutePredicateFactory [CloudFoundryRouteService]
+2026-02-12 16:23:55 - Exposing 3 endpoints beneath base path '/actuator'
+2026-02-12 16:23:58 - Netty started on port 53611 (http)
+2026-02-12 16:23:58 - RouteDefinition example-service applying {_genkey_0=/api/**} to Path
+2026-02-12 16:23:58 - RouteDefinition example-service applying filter {_genkey_0=1} to StripPrefix
+2026-02-12 16:23:58 - RouteDefinition matched: example-service
+2026-02-12 16:23:58 - New routes count: 1
+2026-02-12 16:23:58 - Started CsrfProtectionIntegrationTest in 9.558 seconds (process running for 10.605)
+2026-02-12 16:24:01 - Trying to match using PathMatcherServerWebExchangeMatcher{pattern='/login', method=POST}
+2026-02-12 16:24:01 - Request 'GET /api/test' doesn't match 'POST /login'
+2026-02-12 16:24:01 - No matches found
+2026-02-12 16:24:01 - Request 'GET /api/test' doesn't match 'GET /default-ui.css'
+2026-02-12 16:24:01 - Trying to match using PathMatcherServerWebExchangeMatcher{pattern='/login', method=GET}
+2026-02-12 16:24:01 - Request 'GET /api/test' doesn't match 'GET /login'
+2026-02-12 16:24:01 - No matches found
+2026-02-12 16:24:01 - Trying to match using PathMatcherServerWebExchangeMatcher{pattern='/logout', method=GET}
+2026-02-12 16:24:01 - Request 'GET /api/test' doesn't match 'GET /logout'
+2026-02-12 16:24:01 - No matches found
+2026-02-12 16:24:01 - Trying to match using PathMatcherServerWebExchangeMatcher{pattern='/logout', method=POST}
+2026-02-12 16:24:01 - Request 'GET /api/test' doesn't match 'POST /logout'
+2026-02-12 16:24:01 - No matches found
+2026-02-12 16:24:01 - Trying to match using EndpointRequestMatcher includes=[health], excludes=[], includeLinks=false
+2026-02-12 16:24:01 - Trying to match using PathMatcherServerWebExchangeMatcher{pattern='/actuator/health/**', method=null}
+2026-02-12 16:24:01 - Request 'GET /api/test' doesn't match 'null /actuator/health/**'
+2026-02-12 16:24:01 - No matches found
+2026-02-12 16:24:01 - Trying to match using AdditionalPathsEndpointServerWebExchangeMatcher endpoints=[health], webServerNamespace=server
+2026-02-12 16:24:01 - No matches found
+2026-02-12 16:24:01 - Checking authorization on '/api/test' using org.springframework.security.authorization.AuthenticatedReactiveAuthorizationManager@179fe670
+2026-02-12 16:24:01 - No SecurityContext found in WebSession: 'org.springframework.web.server.session.InMemoryWebSessionStore$InMemoryWebSession@15ebcc8a'
+2026-02-12 16:24:01 - Authorization failed: Access Denied
+2026-02-12 16:24:02 - No SecurityContext found in WebSession: 'org.springframework.web.server.session.InMemoryWebSessionStore$InMemoryWebSession@15ebcc8a'
+2026-02-12 16:24:02 - Trying to match using MediaTypeRequestMatcher [matchingMediaTypes=[text/html], useEquals=false, ignoredMediaTypes=[*/*]]
+2026-02-12 16:24:02 - httpRequestMediaTypes=[*/*]
+2026-02-12 16:24:02 - Processing */*
+2026-02-12 16:24:02 - Ignoring
+2026-02-12 16:24:02 - Did not match any media types
+2026-02-12 16:24:02 - Trying to match using OrServerWebExchangeMatcher{matchers=[org.springframework.security.config.web.server.ServerHttpSecurity$HttpBasicSpec$$Lambda/0x000001773a640c98@400e0f7, AndServerWebExchangeMatcher{matchers=[NegatedServerWebExchangeMatcher{matcher=MediaTypeRequestMatcher [matchingMediaTypes=[text/html], useEquals=false, ignoredMediaTypes=[]]}, MediaTypeRequestMatcher [matchingMediaTypes=[application/atom+xml, application/x-www-form-urlencoded, application/json, application/octet-stream, application/xml, multipart/form-data, text/xml], useEquals=false, ignoredMediaTypes=[*/*]]]}]}
+2026-02-12 16:24:02 - Trying to match using org.springframework.security.config.web.server.ServerHttpSecurity$HttpBasicSpec$$Lambda/0x000001773a640c98@400e0f7
+2026-02-12 16:24:02 - Trying to match using AndServerWebExchangeMatcher{matchers=[NegatedServerWebExchangeMatcher{matcher=MediaTypeRequestMatcher [matchingMediaTypes=[text/html], useEquals=false, ignoredMediaTypes=[]]}, MediaTypeRequestMatcher [matchingMediaTypes=[application/atom+xml, application/x-www-form-urlencoded, application/json, application/octet-stream, application/xml, multipart/form-data, text/xml], useEquals=false, ignoredMediaTypes=[*/*]]]}
+2026-02-12 16:24:02 - Trying to match using NegatedServerWebExchangeMatcher{matcher=MediaTypeRequestMatcher [matchingMediaTypes=[text/html], useEquals=false, ignoredMediaTypes=[]]}
+2026-02-12 16:24:02 - httpRequestMediaTypes=[*/*]
+2026-02-12 16:24:02 - Processing */*
+2026-02-12 16:24:02 - text/html .isCompatibleWith */* = true
+2026-02-12 16:24:02 - matches = false
+2026-02-12 16:24:02 - Did not match
+2026-02-12 16:24:02 - No matches found
+2026-02-12 16:24:02 - No match found. Using default entry point org.springframework.security.web.server.DelegatingServerAuthenticationEntryPoint@7b9f6c7a
+2026-02-12 16:24:02 - Trying to match using org.springframework.security.config.web.server.ServerHttpSecurity$HttpBasicSpec$$Lambda/0x000001773a640c98@400e0f7
+2026-02-12 16:24:02 - No match found. Using default entry point org.springframework.security.web.server.authentication.HttpBasicServerAuthenticationEntryPoint@65cc36a
+2026-02-12 16:24:02 - Request details for assertion failure:
+
+> GET http://localhost:53611/api/test
+> accept-encoding: [gzip]
+> host: [localhost:53611]
+> accept: [*/*]
+> WebTestClient-Request-Id: [1]
+> idcs_remote_user: [integrationuser]
+> idcs_session_id: [integration-session-123]
+> User-Agent: [Integration Test Browser]
+
+No content
+
+< 401 UNAUTHORIZED Unauthorized
+< WWW-Authenticate: [Basic realm="Realm"]
+< X-Request-Id: [2c78a133-7ab1-4147-9fc9-51d23c51b95a]
+< Cache-Control: [no-cache, no-store, max-age=0, must-revalidate]
+< Pragma: [no-cache]
+< Expires: [0]
+< X-Content-Type-Options: [nosniff]
+< X-Frame-Options: [DENY]
+< X-XSS-Protection: [0]
+< Referrer-Policy: [no-referrer]
+< content-length: [0]
+
+0 bytes of content (unknown content-type).
+
+]]></system-out>
+    <system-err><![CDATA[Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build what is described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org/mockito/Mockito.html#0.3
+WARNING: A Java agent has been loaded dynamically (C:\Users\LENOVO\.m2\repository\net\bytebuddy\byte-buddy-agent\1.15.10\byte-buddy-agent-1.15.10.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+  </testcase>
+  <testcase name="testTokenWithWrongUsernameReturns403" classname="com.oracle.hospitality.hdp.gateway.filter.CsrfProtectionIntegrationTest" time="0.663">
+    <system-out><![CDATA[2026-02-12 16:24:02 - UI request detected. Validating CSRF.
+2026-02-12 16:24:02 - JWT validation failed: JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
+]]></system-out>
+  </testcase>
+  <testcase name="testS2SRequestBypassesCsrf" classname="com.oracle.hospitality.hdp.gateway.filter.CsrfProtectionIntegrationTest" time="0.07">
+    <failure message="Status expected:&lt;404 NOT_FOUND&gt; but was:&lt;403 FORBIDDEN&gt;" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: Status expected:<404 NOT_FOUND> but was:<403 FORBIDDEN>
+	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:61)
+	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:128)
+	at org.springframework.test.web.reactive.server.StatusAssertions.lambda$assertStatusAndReturn$4(StatusAssertions.java:236)
+	at org.springframework.test.web.reactive.server.ExchangeResult.assertWithDiagnostics(ExchangeResult.java:232)
+	at org.springframework.test.web.reactive.server.StatusAssertions.assertStatusAndReturn(StatusAssertions.java:236)
+	at org.springframework.test.web.reactive.server.StatusAssertions.isNotFound(StatusAssertions.java:153)
+	at com.oracle.hospitality.hdp.gateway.filter.CsrfProtectionIntegrationTest.testS2SRequestBypassesCsrf(CsrfProtectionIntegrationTest.java:117)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+]]></failure>
+    <system-out><![CDATA[2026-02-12 16:24:02 - Request details for assertion failure:
+
+> POST http://localhost:53611/api/test
+> accept-encoding: [gzip]
+> user-agent: [ReactorNetty/1.2.0]
+> host: [localhost:53611]
+> accept: [*/*]
+> WebTestClient-Request-Id: [3]
+> Authorization: [Bearer s2s-token]
+> Content-Type: [application/json]
+> Content-Length: [15]
+
+{"test":"data"}
+
+< 403 FORBIDDEN Forbidden
+< Content-Type: [text/plain]
+< X-Request-Id: [9a749602-7751-479d-aaa9-7c738edd4925]
+< Cache-Control: [no-cache, no-store, max-age=0, must-revalidate]
+< Pragma: [no-cache]
+< Expires: [0]
+< X-Content-Type-Options: [nosniff]
+< X-Frame-Options: [DENY]
+< X-XSS-Protection: [0]
+< Referrer-Policy: [no-referrer]
+< content-length: [38]
+
+An expected CSRF token cannot be found
+
+]]></system-out>
+  </testcase>
+  <testcase name="testPostRequestWithoutTokenReturns403" classname="com.oracle.hospitality.hdp.gateway.filter.CsrfProtectionIntegrationTest" time="0.357">
+    <system-out><![CDATA[2026-02-12 16:24:03 - UI request detected. Validating CSRF.
+]]></system-out>
+  </testcase>
+  <testcase name="testPostRequestWithValidTokenSucceeds" classname="com.oracle.hospitality.hdp.gateway.filter.CsrfProtectionIntegrationTest" time="0.104">
+    <failure message="Status expected:&lt;404 NOT_FOUND&gt; but was:&lt;403 FORBIDDEN&gt;" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: Status expected:<404 NOT_FOUND> but was:<403 FORBIDDEN>
+	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:61)
+	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:128)
+	at org.springframework.test.web.reactive.server.StatusAssertions.lambda$assertStatusAndReturn$4(StatusAssertions.java:236)
+	at org.springframework.test.web.reactive.server.ExchangeResult.assertWithDiagnostics(ExchangeResult.java:232)
+	at org.springframework.test.web.reactive.server.StatusAssertions.assertStatusAndReturn(StatusAssertions.java:236)
+	at org.springframework.test.web.reactive.server.StatusAssertions.isNotFound(StatusAssertions.java:153)
+	at com.oracle.hospitality.hdp.gateway.filter.CsrfProtectionIntegrationTest.testPostRequestWithValidTokenSucceeds(CsrfProtectionIntegrationTest.java:71)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+]]></failure>
+    <system-out><![CDATA[2026-02-12 16:24:03 - UI request detected. Validating CSRF.
+2026-02-12 16:24:03 - JWT validation failed: JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
+2026-02-12 16:24:03 - Request details for assertion failure:
+
+> POST http://localhost:53611/api/test
+> accept-encoding: [gzip]
+> host: [localhost:53611]
+> accept: [*/*]
+> WebTestClient-Request-Id: [5]
+> X-CSRF-Token: [eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJoZHAtY3NyZi1pc3N1ZXItdGVzdCIsInN1YiI6ImludGVncmF0aW9udXNlciIsInNlc3Npb25faWQiOiJpbnRlZ3JhdGlvbi1zZXNzaW9uLTEyMyIsInVzZXJfYWdlbnRfaGFzaCI6IjNkYmVhYjZmZWRkYjI0NmIwMDVmZTY0OTkyNjJmOTkxYzY3NWU0Y2QzYmFhOTNmNWM4MzllODgwY2Q5NDAyZjEiLCJpYXQiOjE3NzA4OTM2NDMsImV4cCI6MTc3MDg5NDI0MywianRpIjoiMDNmMTNlZmUtYTc2ZC00MDdmLWI3ZmMtYWI1Yjk3NjhiNjNmIn0.p1ymPuU4-V2BhQVVwxiFZvTw2sV4LTt3dF7PnDhbTx-It3qJmBEPFklW-HNVEUHXchFqf1o0U17BASTakOUGDGam-cBTuRYjvn7KE1kmfpbDmY2hiMRry0UI7WQB5I08W2ucwCe4t88zw9vn3PQ1huMOeG-7FJA3l27HV0SrFPpTUaEb476j9ZRM2PoU2I11TuFrAihTQWUV1d7ny8Rpvy_GhMrOQOuIFQltYz3cAa0YZ4_XhLklCJDr_VAw28lJSTOQ-Hk_q_9p31rW6khDy3My_KkG9AlGzxIBOvs3XeZFDrAgdpTXRpITTwFcGty9Yqqt5j3c_zgOPElMIyl4pg]
+> idcs_remote_user: [integrationuser]
+> idcs_session_id: [integration-session-123]
+> User-Agent: [Integration Test Browser]
+> Cookie: [session=test]
+> Content-Type: [application/json]
+> Content-Length: [15]
+
+{"test":"data"}
+
+< 403 FORBIDDEN Forbidden
+< Content-Type: [application/json]
+< content-length: [121]
+
+{"error":"invalid_csrf_token","message":"Invalid token signature or format","timestamp":"2026-02-12T10:54:03.468291700Z"}
+
+]]></system-out>
+  </testcase>
+  <testcase name="testDeleteRequestRequiresCsrfToken" classname="com.oracle.hospitality.hdp.gateway.filter.CsrfProtectionIntegrationTest" time="0.034">
+    <system-out><![CDATA[2026-02-12 16:24:03 - UI request detected. Validating CSRF.
+]]></system-out>
+  </testcase>
+  <testcase name="testPatchRequestRequiresCsrfToken" classname="com.oracle.hospitality.hdp.gateway.filter.CsrfProtectionIntegrationTest" time="0.105">
+    <system-out><![CDATA[2026-02-12 16:24:03 - UI request detected. Validating CSRF.
+]]></system-out>
+  </testcase>
+  <testcase name="testPutRequestRequiresCsrfToken" classname="com.oracle.hospitality.hdp.gateway.filter.CsrfProtectionIntegrationTest" time="0.046">
+    <system-out><![CDATA[2026-02-12 16:24:03 - UI request detected. Validating CSRF.
+]]></system-out>
+  </testcase>
+  <testcase name="testOptionsRequestBypassesCsrf" classname="com.oracle.hospitality.hdp.gateway.filter.CsrfProtectionIntegrationTest" time="0.111">
+    <failure message="Status expected:&lt;404 NOT_FOUND&gt; but was:&lt;401 UNAUTHORIZED&gt;" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: Status expected:<404 NOT_FOUND> but was:<401 UNAUTHORIZED>
+	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:61)
+	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:128)
+	at org.springframework.test.web.reactive.server.StatusAssertions.lambda$assertStatusAndReturn$4(StatusAssertions.java:236)
+	at org.springframework.test.web.reactive.server.ExchangeResult.assertWithDiagnostics(ExchangeResult.java:232)
+	at org.springframework.test.web.reactive.server.StatusAssertions.assertStatusAndReturn(StatusAssertions.java:236)
+	at org.springframework.test.web.reactive.server.StatusAssertions.isNotFound(StatusAssertions.java:153)
+	at com.oracle.hospitality.hdp.gateway.filter.CsrfProtectionIntegrationTest.testOptionsRequestBypassesCsrf(CsrfProtectionIntegrationTest.java:165)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+]]></failure>
+    <system-out><![CDATA[2026-02-12 16:24:03 - Trying to match using PathMatcherServerWebExchangeMatcher{pattern='/login', method=POST}
+2026-02-12 16:24:03 - Request 'OPTIONS /api/test' doesn't match 'POST /login'
+2026-02-12 16:24:03 - No matches found
+2026-02-12 16:24:03 - Request 'OPTIONS /api/test' doesn't match 'GET /default-ui.css'
+2026-02-12 16:24:03 - Trying to match using PathMatcherServerWebExchangeMatcher{pattern='/login', method=GET}
+2026-02-12 16:24:03 - Request 'OPTIONS /api/test' doesn't match 'GET /login'
+2026-02-12 16:24:03 - No matches found
+2026-02-12 16:24:03 - Trying to match using PathMatcherServerWebExchangeMatcher{pattern='/logout', method=GET}
+2026-02-12 16:24:03 - Request 'OPTIONS /api/test' doesn't match 'GET /logout'
+2026-02-12 16:24:03 - No matches found
+2026-02-12 16:24:03 - Trying to match using PathMatcherServerWebExchangeMatcher{pattern='/logout', method=POST}
+2026-02-12 16:24:03 - Request 'OPTIONS /api/test' doesn't match 'POST /logout'
+2026-02-12 16:24:03 - No matches found
+2026-02-12 16:24:03 - Trying to match using EndpointRequestMatcher includes=[health], excludes=[], includeLinks=false
+2026-02-12 16:24:03 - Trying to match using PathMatcherServerWebExchangeMatcher{pattern='/actuator/health/**', method=null}
+2026-02-12 16:24:03 - Request 'OPTIONS /api/test' doesn't match 'null /actuator/health/**'
+2026-02-12 16:24:03 - No matches found
+2026-02-12 16:24:03 - Trying to match using AdditionalPathsEndpointServerWebExchangeMatcher endpoints=[health], webServerNamespace=server
+2026-02-12 16:24:03 - No matches found
+2026-02-12 16:24:03 - Checking authorization on '/api/test' using org.springframework.security.authorization.AuthenticatedReactiveAuthorizationManager@179fe670
+2026-02-12 16:24:03 - No SecurityContext found in WebSession: 'org.springframework.web.server.session.InMemoryWebSessionStore$InMemoryWebSession@16036138'
+2026-02-12 16:24:03 - Authorization failed: Access Denied
+2026-02-12 16:24:03 - No SecurityContext found in WebSession: 'org.springframework.web.server.session.InMemoryWebSessionStore$InMemoryWebSession@16036138'
+2026-02-12 16:24:03 - Trying to match using MediaTypeRequestMatcher [matchingMediaTypes=[text/html], useEquals=false, ignoredMediaTypes=[*/*]]
+2026-02-12 16:24:03 - httpRequestMediaTypes=[*/*]
+2026-02-12 16:24:03 - Processing */*
+2026-02-12 16:24:03 - Ignoring
+2026-02-12 16:24:03 - Did not match any media types
+2026-02-12 16:24:03 - Trying to match using OrServerWebExchangeMatcher{matchers=[org.springframework.security.config.web.server.ServerHttpSecurity$HttpBasicSpec$$Lambda/0x000001773a640c98@400e0f7, AndServerWebExchangeMatcher{matchers=[NegatedServerWebExchangeMatcher{matcher=MediaTypeRequestMatcher [matchingMediaTypes=[text/html], useEquals=false, ignoredMediaTypes=[]]}, MediaTypeRequestMatcher [matchingMediaTypes=[application/atom+xml, application/x-www-form-urlencoded, application/json, application/octet-stream, application/xml, multipart/form-data, text/xml], useEquals=false, ignoredMediaTypes=[*/*]]]}]}
+2026-02-12 16:24:03 - Trying to match using org.springframework.security.config.web.server.ServerHttpSecurity$HttpBasicSpec$$Lambda/0x000001773a640c98@400e0f7
+2026-02-12 16:24:03 - Trying to match using AndServerWebExchangeMatcher{matchers=[NegatedServerWebExchangeMatcher{matcher=MediaTypeRequestMatcher [matchingMediaTypes=[text/html], useEquals=false, ignoredMediaTypes=[]]}, MediaTypeRequestMatcher [matchingMediaTypes=[application/atom+xml, application/x-www-form-urlencoded, application/json, application/octet-stream, application/xml, multipart/form-data, text/xml], useEquals=false, ignoredMediaTypes=[*/*]]]}
+2026-02-12 16:24:03 - Trying to match using NegatedServerWebExchangeMatcher{matcher=MediaTypeRequestMatcher [matchingMediaTypes=[text/html], useEquals=false, ignoredMediaTypes=[]]}
+2026-02-12 16:24:03 - httpRequestMediaTypes=[*/*]
+2026-02-12 16:24:03 - Processing */*
+2026-02-12 16:24:03 - text/html .isCompatibleWith */* = true
+2026-02-12 16:24:03 - matches = false
+2026-02-12 16:24:03 - Did not match
+2026-02-12 16:24:03 - No matches found
+2026-02-12 16:24:03 - No match found. Using default entry point org.springframework.security.web.server.DelegatingServerAuthenticationEntryPoint@7b9f6c7a
+2026-02-12 16:24:03 - Trying to match using org.springframework.security.config.web.server.ServerHttpSecurity$HttpBasicSpec$$Lambda/0x000001773a640c98@400e0f7
+2026-02-12 16:24:03 - No match found. Using default entry point org.springframework.security.web.server.authentication.HttpBasicServerAuthenticationEntryPoint@65cc36a
+2026-02-12 16:24:03 - Request details for assertion failure:
+
+> OPTIONS http://localhost:53611/api/test
+> accept-encoding: [gzip]
+> user-agent: [ReactorNetty/1.2.0]
+> host: [localhost:53611]
+> accept: [*/*]
+> transfer-encoding: [chunked]
+> WebTestClient-Request-Id: [9]
+
+No content
+
+< 401 UNAUTHORIZED Unauthorized
+< WWW-Authenticate: [Basic realm="Realm"]
+< X-Request-Id: [a3c5c098-b2aa-48ce-b13b-31aba82743cb]
+< Cache-Control: [no-cache, no-store, max-age=0, must-revalidate]
+< Pragma: [no-cache]
+< Expires: [0]
+< X-Content-Type-Options: [nosniff]
+< X-Frame-Options: [DENY]
+< X-XSS-Protection: [0]
+< Referrer-Policy: [no-referrer]
+< content-length: [0]
+
+0 bytes of content (unknown content-type).
+
+]]></system-out>
+  </testcase>
+  <testcase name="testPostRequestWithExpiredTokenReturns403" classname="com.oracle.hospitality.hdp.gateway.filter.CsrfProtectionIntegrationTest" time="0.056">
+    <system-out><![CDATA[2026-02-12 16:24:03 - UI request detected. Validating CSRF.
+2026-02-12 16:24:03 - JWT validation failed: JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
+]]></system-out>
+  </testcase>
+  <testcase name="testTokenWithWrongSessionIdReturns403" classname="com.oracle.hospitality.hdp.gateway.filter.CsrfProtectionIntegrationTest" time="0.038">
+    <system-out><![CDATA[2026-02-12 16:24:03 - UI request detected. Validating CSRF.
+2026-02-12 16:24:03 - JWT validation failed: JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
+]]></system-out>
+  </testcase>
+</testsuite>

@@ -1,23 +1,73 @@
+server:
+  port: 8080
+
 spring:
   application:
     name: services-router-gateway
+
   cloud:
     gateway:
+      # Global CORS configuration
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - PATCH
+              - DELETE
+              - OPTIONS
+            allowedHeaders: "*"
+            exposedHeaders:
+              - X-CSRF-Token
+            maxAge: 3600
+
+      # Example routes - customize as needed
       routes:
-        - id: backend_route
+        - id: example-service
           uri: http://localhost:8081
           predicates:
             - Path=/api/**
+          filters:
+            - StripPrefix=1
 
+# CSRF Protection Configuration
 csrf:
   enabled: true
-  header-name: X-CSRF-Token
+  token:
+    header-name: X-CSRF-Token
   public-key-location: classpath:keys/csrf-public-key.pem
   max-age-seconds: 600
   issuer: hdp-csrf-issuer
+  # Optional: Enable origin/referer validation
+  validate-origin: false
+  allowed-origins:
+    - http://localhost:3000
+    - https://your-frontend-domain.com
 
+# Logging Configuration
+logging:
+  level:
+    root: INFO
+    com.oracle.hospitality.hdp: DEBUG
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.security: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+# Actuator Configuration
 management:
   endpoints:
     web:
       exposure:
-        include: health,info,actuator
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: always
+  metrics:
+    export:
+      prometheus:
+        enabled: true
