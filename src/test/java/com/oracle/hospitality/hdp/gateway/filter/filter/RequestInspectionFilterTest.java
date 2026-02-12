@@ -1,7 +1,8 @@
-package com.oracle.hospitality.hdp.gateway.filter;
+package com.oracle.hospitality.hdp.gateway.filter.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.oracle.hospitality.hdp.gateway.config.CsrfConfigurationProperties;
+import com.oracle.hospitality.hdp.gateway.filter.RequestInspectionFilter;
 import com.oracle.hospitality.hdp.gateway.service.CsrfTokenValidator;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
