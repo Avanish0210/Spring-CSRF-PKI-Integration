@@ -1,221 +1,178 @@
 package com.oracle.hospitality.hdp.gateway.filter;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.oracle.hospitality.hdp.gateway.config.CsrfConfigurationProperties;
-import com.oracle.hospitality.hdp.gateway.service.CsrfTokenValidator;
+import com.oracle.hospitality.hdp.gateway.config.CsrfProperties;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 import java.nio.charset.StandardCharsets;
+import java.security.KeyFactory;
+import java.security.MessageDigest;
+import java.security.PublicKey;
+import java.security.spec.X509EncodedKeySpec;
 import java.time.Instant;
-import java.util.HashMap;
-import java.util.List;
+import java.util.Base64;
+import java.util.HexFormat;
 import java.util.Map;
 import java.util.Set;
 
-/**
- * Global filter for CSRF token validation.
- * 
- * This filter validates CSRF tokens for unsafe HTTP methods (POST, PUT, PATCH,
- * DELETE).
- * Safe methods (GET, OPTIONS, HEAD) and service-to-service calls bypass
- * validation.
- * 
- * Order: -100 (executes early in the filter chain, before routing)
- */
 @Slf4j
 @Component
 public class CsrfValidationGlobalFilter implements GlobalFilter, Ordered {
 
-    private static final Set<HttpMethod> UNSAFE_METHODS = Set.of(
-            HttpMethod.POST,
-            HttpMethod.PUT,
-            HttpMethod.PATCH,
+    private final CsrfProperties properties;
+    private final ObjectMapper objectMapper;
+    private final ResourceLoader resourceLoader;
+    private PublicKey publicKey;
+
+    private static final Set<HttpMethod> UNSAFE_METHODS = Set.of(HttpMethod.POST, HttpMethod.PUT, HttpMethod.PATCH,
             HttpMethod.DELETE);
 
-    private static final Set<HttpMethod> SAFE_METHODS = Set.of(
-            HttpMethod.GET,
-            HttpMethod.HEAD,
-            HttpMethod.OPTIONS);
-
-    private static final String IDCS_REMOTE_USER_HEADER = "idcs_remote_user";
-    private static final String IDCS_SESSION_ID_HEADER = "idcs_session_id";
-
-    private final CsrfConfigurationProperties csrfConfig;
-    private final CsrfTokenValidator tokenValidator;
-    private final ObjectMapper objectMapper;
-
-    public CsrfValidationGlobalFilter(
-            CsrfConfigurationProperties csrfConfig,
-            CsrfTokenValidator tokenValidator,
-            ObjectMapper objectMapper) {
-        this.csrfConfig = csrfConfig;
-        this.tokenValidator = tokenValidator;
+    public CsrfValidationGlobalFilter(CsrfProperties properties, ObjectMapper objectMapper,
+            ResourceLoader resourceLoader) {
+        this.properties = properties;
         this.objectMapper = objectMapper;
+        this.resourceLoader = resourceLoader;
     }
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        ServerHttpRequest request = exchange.getRequest();
-        HttpMethod method = request.getMethod();
-
-        // Skip if CSRF protection is disabled
-        if (!csrfConfig.getEnabled()) {
-            log.trace("CSRF protection is disabled");
+        if (!properties.isEnabled()) {
             return chain.filter(exchange);
         }
 
-        // Skip safe methods
-        if (SAFE_METHODS.contains(method)) {
-            log.trace("Safe method {}, bypassing CSRF validation", method);
+        HttpMethod method = exchange.getRequest().getMethod();
+        if (method == null || !UNSAFE_METHODS.contains(method)) {
             return chain.filter(exchange);
         }
 
-        // Skip if not an unsafe method
-        if (!UNSAFE_METHODS.contains(method)) {
-            log.trace("Method {} is not subject to CSRF validation", method);
-            return chain.filter(exchange);
-        }
-
-        HttpHeaders headers = request.getHeaders();
-
-        // Skip service-to-service calls
+        HttpHeaders headers = exchange.getRequest().getHeaders();
         if (isS2SCall(headers)) {
-            log.trace("Service-to-service call detected, bypassing CSRF validation");
             return chain.filter(exchange);
         }
 
-        // This is a UI call with an unsafe method - validate CSRF token
-        log.debug("Validating CSRF token for {} {}", method, request.getPath());
-
-        String csrfToken = headers.getFirst(csrfConfig.getToken().getHeaderName());
-
-        // Missing token
-        if (csrfToken == null || csrfToken.isBlank()) {
-            log.warn("Missing CSRF token for {} {}", method, request.getPath());
-            return rejectRequest(exchange, "missing_csrf_token", "CSRF token is required");
+        String token = headers.getFirst(properties.getHeaderName());
+        if (token == null || token.isBlank()) {
+            return errorResponse(exchange, "missing_csrf_token", "Invalid or missing CSRF token");
         }
 
-        // Extract user information from headers
-        String username = headers.getFirst(IDCS_REMOTE_USER_HEADER);
-        String sessionId = headers.getFirst(IDCS_SESSION_ID_HEADER);
+        try {
+            if (publicKey == null) {
+                this.publicKey = loadPublicKey();
+            }
 
-        // Validate required headers
-        if (username == null || username.isBlank()) {
-            log.warn("Missing {} header", IDCS_REMOTE_USER_HEADER);
-            return rejectRequest(exchange, "missing_user_header", "User identification header missing");
+            Claims claims = Jwts.parser()
+                    .verifyWith(publicKey)
+                    .build()
+                    .parseSignedClaims(token)
+                    .getPayload();
+
+            // 1. Issuer check
+            if (!properties.getIssuer().equals(claims.getIssuer())) {
+                return errorResponse(exchange, "invalid_csrf_token", "Invalid issuer");
+            }
+
+            // 2. Sub match idcs_remote_user
+            String sub = claims.getSubject();
+            String idcsUser = headers.getFirst("idcs_remote_user");
+            if (idcsUser == null || !idcsUser.equals(sub)) {
+                return errorResponse(exchange, "invalid_csrf_token", "User mismatch");
+            }
+
+            // 3. session_id match idcs_session_id
+            String sessionId = claims.get("session_id", String.class);
+            String idcsSession = headers.getFirst("idcs_session_id");
+            if (idcsSession == null || !idcsSession.equals(sessionId)) {
+                return errorResponse(exchange, "invalid_csrf_token", "Session mismatch");
+            }
+
+            // 4. user_agent_hash match SHA-256(User-Agent)
+            String userAgent = headers.getFirst(HttpHeaders.USER_AGENT);
+            String tokenHash = claims.get("user_agent_hash", String.class);
+            if (userAgent == null || !hashUserAgent(userAgent).equals(tokenHash)) {
+                return errorResponse(exchange, "invalid_csrf_token", "User-Agent mismatch");
+            }
+
+            // 5. Age check (iat older than 10 mins)
+            Instant iat = claims.getIssuedAt().toInstant();
+            if (iat.plusSeconds(properties.getMaxAgeSeconds()).isBefore(Instant.now())) {
+                return errorResponse(exchange, "invalid_csrf_token", "Token expired (iat)");
+            }
+
+            return chain.filter(exchange);
+
+        } catch (Exception e) {
+            log.error("CSRF Validation failed: {}", e.getMessage());
+            return errorResponse(exchange, "invalid_csrf_token", "Invalid or missing CSRF token");
         }
-
-        if (sessionId == null || sessionId.isBlank()) {
-            log.warn("Missing {} header", IDCS_SESSION_ID_HEADER);
-            return rejectRequest(exchange, "missing_session_header", "Session identification header missing");
-        }
-
-        // Validate the token
-        CsrfTokenValidator.ValidationResult result = tokenValidator.validate(
-                csrfToken, headers, username, sessionId);
-
-        if (!result.isValid()) {
-            log.warn("CSRF token validation failed: {}", result.getReason());
-            return rejectRequest(exchange, "invalid_csrf_token",
-                    "Invalid or expired CSRF token: " + result.getReason());
-        }
-
-        log.trace("CSRF token validation successful for user: {}", username);
-        return chain.filter(exchange);
     }
 
-    /**
-     * Determines if the request is a service-to-service call.
-     * 
-     * S2S calls are identified by:
-     * 1. No Cookie header present
-     * 2. Authorization header present (for authenticated S2S)
-     * 3. OR no Authorization and no Cookie (for internal/local calls)
-     *
-     * @param headers Request headers
-     * @return true if this is an S2S call
-     */
     private boolean isS2SCall(HttpHeaders headers) {
-        String cookie = headers.getFirst(HttpHeaders.COOKIE);
-        String authorization = headers.getFirst(HttpHeaders.AUTHORIZATION);
-
-        // If Cookie is present, this is a browser/UI call
-        if (cookie != null && !cookie.isBlank()) {
+        String cookie = headers.getFirst("Cookie");
+        if (cookie != null && !cookie.isBlank())
             return false;
+        String auth = headers.getFirst("Authorization");
+        if (auth != null && !auth.isBlank()) {
+            // S2S check: typically Bearer token without session cookie
+            return auth.startsWith("Bearer ");
         }
-
-        // No cookie present - check authorization
-        if (authorization != null && !authorization.isBlank()) {
-            return isS2SCallBasedOnAuth(authorization);
-        }
-
-        // No cookie, no auth - assume internal/local call
-        return true;
+        return true; // Internal/local call
     }
 
-    /**
-     * Additional validation for S2S calls based on Authorization header.
-     * 
-     * This can be customized based on your S2S authentication mechanism.
-     * For example, check for specific token patterns, client credentials, etc.
-     *
-     * @param authorization Authorization header value
-     * @return true if this is a valid S2S authorization
-     */
-    private boolean isS2SCallBasedOnAuth(String authorization) {
-        // Default implementation: any Bearer token without Cookie is considered S2S
-        // Customize this based on your specific S2S authentication requirements
-        return authorization.startsWith("Bearer ");
+    private String hashUserAgent(String userAgent) throws Exception {
+        MessageDigest digest = MessageDigest.getInstance("SHA-256");
+        byte[] hash = digest.digest(userAgent.getBytes(StandardCharsets.UTF_8));
+        return HexFormat.of().formatHex(hash);
     }
 
-    /**
-     * Rejects the request with a 403 Forbidden response and JSON error body.
-     *
-     * @param exchange ServerWebExchange
-     * @param error    Error code
-     * @param message  Error message
-     * @return Mono<Void>
-     */
-    private Mono<Void> rejectRequest(ServerWebExchange exchange, String error, String message) {
+    private PublicKey loadPublicKey() throws Exception {
+        Resource resource = resourceLoader.getResource(properties.getPublicKeyLocation());
+        String pem = new String(resource.getInputStream().readAllBytes(), StandardCharsets.UTF_8);
+        String publicKeyPEM = pem
+                .replace("-----BEGIN PUBLIC KEY-----", "")
+                .replace("-----END PUBLIC KEY-----", "")
+                .replaceAll("\\s", "");
+        byte[] encoded = Base64.getDecoder().decode(publicKeyPEM);
+        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+        return keyFactory.generatePublic(new X509EncodedKeySpec(encoded));
+    }
+
+    private Mono<Void> errorResponse(ServerWebExchange exchange, String error, String message) {
         ServerHttpResponse response = exchange.getResponse();
         response.setStatusCode(HttpStatus.FORBIDDEN);
         response.getHeaders().setContentType(MediaType.APPLICATION_JSON);
 
-        Map<String, Object> errorBody = new HashMap<>();
-        errorBody.put("error", error);
-        errorBody.put("message", message);
-        errorBody.put("timestamp", Instant.now().toString());
+        Map<String, String> body = Map.of(
+                "error", error,
+                "message", message,
+                "timestamp", Instant.now().toString());
 
         try {
-            byte[] bytes = objectMapper.writeValueAsBytes(errorBody);
+            byte[] bytes = objectMapper.writeValueAsBytes(body);
             DataBuffer buffer = response.bufferFactory().wrap(bytes);
             return response.writeWith(Mono.just(buffer));
-        } catch (JsonProcessingException e) {
-            log.error("Failed to serialize error response", e);
-            // Fallback to plain text
-            String fallbackMessage = String.format("{\"error\":\"%s\",\"message\":\"%s\"}", error, message);
-            DataBuffer buffer = response.bufferFactory()
-                    .wrap(fallbackMessage.getBytes(StandardCharsets.UTF_8));
-            return response.writeWith(Mono.just(buffer));
+        } catch (Exception e) {
+            return response.setComplete();
         }
     }
 
     @Override
     public int getOrder() {
-        return -100; // Execute early, before routing
+        return -100;
     }
 }
