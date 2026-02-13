@@ -2,36 +2,43 @@ server:
   port: 8080
 
 spring:
+  main:
+    web-application-type: reactive
+  
   application:
     name: services-router-gateway
-
+  
   cloud:
+    compatibility-verifier:
+      enabled: false
     gateway:
-      # Global CORS configuration
-      globalcors:
-        cors-configurations:
-          '[/**]':
-            allowedOrigins: "*"
-            allowedMethods:
-              - GET
-              - POST
-              - PUT
-              - PATCH
-              - DELETE
-              - OPTIONS
-            allowedHeaders: "*"
-            exposedHeaders:
-              - X-CSRF-Token
-            maxAge: 3600
+      server:
+        webflux:
+          # Global CORS configuration
+          globalcors:
+            cors-configurations:
+              '[/**]':
+                allowedOrigins: "*"
+                allowedMethods:
+                  - GET
+                  - POST
+                  - PUT
+                  - PATCH
+                  - DELETE
+                  - OPTIONS
+                allowedHeaders: "*"
+                exposedHeaders:
+                  - X-CSRF-Token
+                maxAge: 3600
 
-      # Example routes - customize as needed
-      routes:
-        - id: example-service
-          uri: http://localhost:8081
-          predicates:
-            - Path=/api/**
-          filters:
-            - StripPrefix=1
+          # Example routes - customize as needed
+          routes:
+            - id: example-service
+              uri: http://localhost:8081
+              predicates:
+                - Path=/api/**
+              filters:
+                - StripPrefix=1
 
 # CSRF Protection Configuration
 csrf:
@@ -67,7 +74,7 @@ management:
   endpoint:
     health:
       show-details: always
-  metrics:
-    export:
-      prometheus:
+  prometheus:
+    metrics:
+      export:
         enabled: true

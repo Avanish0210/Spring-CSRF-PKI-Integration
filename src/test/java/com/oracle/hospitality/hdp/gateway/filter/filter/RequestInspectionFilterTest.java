@@ -5,7 +5,7 @@ import com.oracle.hospitality.hdp.gateway.config.CsrfConfigurationProperties;
 import com.oracle.hospitality.hdp.gateway.filter.RequestInspectionFilter;
 import com.oracle.hospitality.hdp.gateway.service.CsrfTokenValidator;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import java.security.interfaces.RSAPrivateKey;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -31,7 +31,7 @@ import java.security.spec.X509EncodedKeySpec;
 import java.time.Instant;
 import java.util.Base64;
 import java.util.Date;
-import java.util.HexFormat;
+
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -71,12 +71,11 @@ class RequestInspectionFilterTest {
 
         tokenValidator = new CsrfTokenValidator(csrfConfig, publicKey);
         filter = new RequestInspectionFilter("test-env", tokenValidator, csrfConfig, new ObjectMapper());
-
-        when(filterChain.filter(any(ServerWebExchange.class))).thenReturn(Mono.empty());
     }
 
     @Test
     void testSafeMethodsBypassCsrfValidation() {
+        when(filterChain.filter(any(ServerWebExchange.class))).thenReturn(Mono.empty());
         ServerWebExchange exchange = createExchange(HttpMethod.GET, null);
         StepVerifier.create(filter.filter(exchange, filterChain)).verifyComplete();
         assertThat(exchange.getResponse().getStatusCode()).isNull(); // No error set
@@ -84,6 +83,7 @@ class RequestInspectionFilterTest {
 
     @Test
     void testValidTokenProceeds() {
+        when(filterChain.filter(any(ServerWebExchange.class))).thenReturn(Mono.empty());
         String token = createValidToken();
         ServerWebExchange exchange = createExchange(HttpMethod.POST, token);
         StepVerifier.create(filter.filter(exchange, filterChain)).verifyComplete();
@@ -99,6 +99,7 @@ class RequestInspectionFilterTest {
 
     @Test
     void testS2SCallBypassesCsrfValidation() {
+        when(filterChain.filter(any(ServerWebExchange.class))).thenReturn(Mono.empty());
         MockServerHttpRequest request = MockServerHttpRequest
                 .post("/api/test")
                 .header(HttpHeaders.AUTHORIZATION, "Bearer s2s-token")
@@ -130,15 +131,23 @@ class RequestInspectionFilterTest {
                 .issuedAt(Date.from(now))
                 .expiration(Date.from(now.plusSeconds(600)))
                 .id(UUID.randomUUID().toString())
-                .signWith(privateKey, SignatureAlgorithm.RS256)
+                .signWith(privateKey)
                 .compact();
+    }
+
+    private String bytesToHex(byte[] bytes) {
+        StringBuilder result = new StringBuilder();
+        for (byte b : bytes) {
+            result.append(String.format("%02x", b));
+        }
+        return result.toString();
     }
 
     private String hashUserAgent(String userAgent) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] hash = digest.digest(userAgent.getBytes(StandardCharsets.UTF_8));
-            return HexFormat.of().formatHex(hash);
+            return bytesToHex(hash);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

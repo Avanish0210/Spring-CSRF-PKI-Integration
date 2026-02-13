@@ -1,7 +1,7 @@
 package com.oracle.hospitality.hdp.gateway.filter;
 
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import java.security.interfaces.RSAPrivateKey;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import java.security.spec.PKCS8EncodedKeySpec;
 import java.time.Instant;
 import java.util.Base64;
 import java.util.Date;
-import java.util.HexFormat;
+
 import java.util.UUID;
 
 /**
@@ -211,7 +211,7 @@ class CsrfProtectionIntegrationTest {
                 .issuedAt(Date.from(now))
                 .expiration(Date.from(now.plusSeconds(600)))
                 .id(UUID.randomUUID().toString())
-                .signWith(privateKey, SignatureAlgorithm.RS256)
+                .signWith(privateKey)
                 .compact();
     }
 
@@ -225,7 +225,7 @@ class CsrfProtectionIntegrationTest {
                 .issuedAt(Date.from(past))
                 .expiration(Date.from(past.plusSeconds(600)))
                 .id(UUID.randomUUID().toString())
-                .signWith(privateKey, SignatureAlgorithm.RS256)
+                .signWith(privateKey)
                 .compact();
     }
 
@@ -239,7 +239,7 @@ class CsrfProtectionIntegrationTest {
                 .issuedAt(Date.from(now))
                 .expiration(Date.from(now.plusSeconds(600)))
                 .id(UUID.randomUUID().toString())
-                .signWith(privateKey, SignatureAlgorithm.RS256)
+                .signWith(privateKey)
                 .compact();
     }
 
@@ -253,15 +253,23 @@ class CsrfProtectionIntegrationTest {
                 .issuedAt(Date.from(now))
                 .expiration(Date.from(now.plusSeconds(600)))
                 .id(UUID.randomUUID().toString())
-                .signWith(privateKey, SignatureAlgorithm.RS256)
+                .signWith(privateKey)
                 .compact();
+    }
+
+    private String bytesToHex(byte[] bytes) {
+        StringBuilder result = new StringBuilder();
+        for (byte b : bytes) {
+            result.append(String.format("%02x", b));
+        }
+        return result.toString();
     }
 
     private String hashUserAgent(String userAgent) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] hash = digest.digest(userAgent.getBytes(StandardCharsets.UTF_8));
-            return HexFormat.of().formatHex(hash);
+            return bytesToHex(hash);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

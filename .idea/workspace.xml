@@ -5,8 +5,42 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="72c113e3-4db0-4ab6-af75-e3c0d34cd7c4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/oracle/hospitality/hdp/gateway/filter/RequestInspectionFilterTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid16432.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid19092.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid28412.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oracle/hospitality/hdp/gateway/ServicesRouterGatewayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oracle/hospitality/hdp/gateway/ServicesRouterGatewayApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oracle/hospitality/hdp/gateway/config/CsrfSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oracle/hospitality/hdp/gateway/config/CsrfSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oracle/hospitality/hdp/gateway/filter/RequestInspectionFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oracle/hospitality/hdp/gateway/filter/RequestInspectionFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oracle/hospitality/hdp/gateway/service/CsrfTokenValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oracle/hospitality/hdp/gateway/service/CsrfTokenValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/oracle/hospitality/hdp/gateway/filter/CsrfProtectionIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/oracle/hospitality/hdp/gateway/filter/CsrfProtectionIntegrationTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/oracle/hospitality/hdp/gateway/filter/filter/RequestInspectionFilterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/oracle/hospitality/hdp/gateway/filter/filter/RequestInspectionFilterTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/oracle/hospitality/hdp/gateway/ServicesRouterGatewayApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/oracle/hospitality/hdp/gateway/ServicesRouterGatewayApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/oracle/hospitality/hdp/gateway/common/GatewayConstants.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/oracle/hospitality/hdp/gateway/common/GatewayConstants.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/oracle/hospitality/hdp/gateway/config/CsrfConfigurationProperties$TokenConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/oracle/hospitality/hdp/gateway/config/CsrfConfigurationProperties$TokenConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/oracle/hospitality/hdp/gateway/config/CsrfConfigurationProperties.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/oracle/hospitality/hdp/gateway/config/CsrfConfigurationProperties.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/oracle/hospitality/hdp/gateway/config/CsrfSecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/oracle/hospitality/hdp/gateway/config/CsrfSecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/oracle/hospitality/hdp/gateway/filter/RequestInspectionFilter$CsrfValidationException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/oracle/hospitality/hdp/gateway/filter/RequestInspectionFilter$CsrfValidationException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/oracle/hospitality/hdp/gateway/filter/RequestInspectionFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/oracle/hospitality/hdp/gateway/filter/RequestInspectionFilter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/oracle/hospitality/hdp/gateway/model/RequestContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/oracle/hospitality/hdp/gateway/model/RequestContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/oracle/hospitality/hdp/gateway/service/CsrfTokenValidator$ValidationResult.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/oracle/hospitality/hdp/gateway/service/CsrfTokenValidator$ValidationResult.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/oracle/hospitality/hdp/gateway/service/CsrfTokenValidator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/oracle/hospitality/hdp/gateway/service/CsrfTokenValidator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.oracle.hospitality.hdp.gateway.filter.CsrfProtectionIntegrationTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.oracle.hospitality.hdp.gateway.filter.RequestInspectionFilterTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.oracle.hospitality.hdp.gateway.filter.CsrfProtectionIntegrationTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.oracle.hospitality.hdp.gateway.filter.RequestInspectionFilterTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/oracle/hospitality/hdp/gateway/filter/CsrfProtectionIntegrationTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/oracle/hospitality/hdp/gateway/filter/CsrfProtectionIntegrationTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/oracle/hospitality/hdp/gateway/filter/filter/RequestInspectionFilterTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/oracle/hospitality/hdp/gateway/filter/filter/RequestInspectionFilterTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/oracle/hospitality/hdp/gateway/filter/util/CsrfTokenGenerator.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,44 +78,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.ServicesRouterGatewayApplication.executor": "Run",
-    "JUnit.RequestInspectionFilterTest.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "main",
-    "junie.onboarding.icon.badge.shown": "true",
-    "kotlin-language-version-configured": "true",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "to.speed.mode.migration.done": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.CsrfTokenGenerator.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ServicesRouterGatewayApplication.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CsrfProtectionIntegrationTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RequestInspectionFilterTest.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.oracle.hospitality.hdp.gateway.filter" />
       <recent name="com.oracle.hospitality.hdp.gateway.filter.filter" />
+      <recent name="com.oracle.hospitality.hdp.gateway.filter" />
     </key>
   </component>
   <component name="RunManager" selected="JUnit.CsrfProtectionIntegrationTest">
-    <configuration name="CsrfTokenGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.oracle.hospitality.hdp.gateway.filter.util.CsrfTokenGenerator" />
-      <module name="services-router-gateway" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.oracle.hospitality.hdp.gateway.filter.util.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="CsrfProtectionIntegrationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="services-router-gateway" />
       <extension name="coverage">
@@ -160,7 +183,6 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.CsrfProtectionIntegrationTest" />
-        <item itemvalue="Application.CsrfTokenGenerator" />
         <item itemvalue="JUnit.RequestInspectionFilterTest" />
       </list>
     </recent_temporary>

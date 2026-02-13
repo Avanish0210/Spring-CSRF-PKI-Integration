@@ -4,6 +4,7 @@ import com.oracle.hospitality.hdp.gateway.config.CsrfConfigurationProperties;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
+import java.security.interfaces.RSAPublicKey;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,6 @@ import java.security.NoSuchAlgorithmException;
 import java.security.PublicKey;
 import java.time.Instant;
 import java.util.Base64;
-import java.util.HexFormat;
 
 /**
  * Service for validating CSRF tokens.
@@ -47,7 +47,7 @@ public class CsrfTokenValidator {
         try {
             // Parse and verify JWT signature
             Claims claims = Jwts.parser()
-                    .verifyWith(publicKey)
+                    .verifyWith((RSAPublicKey) publicKey)
                     .build()
                     .parseSignedClaims(token)
                     .getPayload();
@@ -119,14 +119,14 @@ public class CsrfTokenValidator {
      * @return Hex-encoded SHA-256 hash
      */
     private String hashUserAgent(String userAgent) {
-        if (userAgent == null || userAgent.isBlank()) {
+        if (userAgent == null || userAgent.trim().isEmpty()) {
             return "";
         }
 
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] hash = digest.digest(userAgent.getBytes(StandardCharsets.UTF_8));
-            return HexFormat.of().formatHex(hash);
+            return bytesToHex(hash);
         } catch (NoSuchAlgorithmException e) {
             log.error("SHA-256 algorithm not available", e);
             throw new RuntimeException("Failed to hash User-Agent", e);
@@ -149,6 +149,20 @@ public class CsrfTokenValidator {
         byte[] bBytes = b.getBytes(StandardCharsets.UTF_8);
 
         return MessageDigest.isEqual(aBytes, bBytes);
+    }
+
+    /**
+     * Converts byte array to hex string (Java 8 compatible).
+     *
+     * @param bytes Byte array to convert
+     * @return Hex string
+     */
+    private String bytesToHex(byte[] bytes) {
+        StringBuilder result = new StringBuilder();
+        for (byte b : bytes) {
+            result.append(String.format("%02x", b));
+        }
+        return result.toString();
     }
 
     /**
@@ -180,4 +194,3 @@ public class CsrfTokenValidator {
         }
     }
 }
-

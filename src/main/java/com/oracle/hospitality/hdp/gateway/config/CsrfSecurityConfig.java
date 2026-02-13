@@ -62,7 +62,7 @@ public class CsrfSecurityConfig {
                     throw new IllegalStateException("Public key resource not found: " + keyLocation);
                 }
 
-                pemContent = resource.getContentAsString(StandardCharsets.UTF_8);
+                pemContent = readResourceContent(resource);
             }
 
             return parsePublicKey(pemContent);
@@ -70,6 +70,20 @@ public class CsrfSecurityConfig {
         } catch (IOException e) {
             throw new IllegalStateException("Failed to load CSRF public key", e);
         }
+    }
+
+    /**
+     * Reads resource content as string (Java 8 compatible).
+     */
+    private String readResourceContent(Resource resource) throws IOException {
+        java.io.InputStream is = resource.getInputStream();
+        java.io.ByteArrayOutputStream result = new java.io.ByteArrayOutputStream();
+        byte[] buffer = new byte[1024];
+        int length;
+        while ((length = is.read(buffer)) != -1) {
+            result.write(buffer, 0, length);
+        }
+        return result.toString(StandardCharsets.UTF_8.name());
     }
 
     /**
@@ -117,4 +131,3 @@ public class CsrfSecurityConfig {
                 .findAndRegisterModules();
     }
 }
-

@@ -1,2 +1,1 @@
-com\oracle\hospitality\hdp\gateway\filter\util\CsrfTokenGenerator.class
 com\oracle\hospitality\hdp\gateway\filter\CsrfProtectionIntegrationTest.class

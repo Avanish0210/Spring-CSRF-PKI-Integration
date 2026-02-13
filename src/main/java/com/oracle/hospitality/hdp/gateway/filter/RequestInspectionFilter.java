@@ -5,11 +5,10 @@ import com.oracle.hospitality.hdp.gateway.common.GatewayConstants;
 import com.oracle.hospitality.hdp.gateway.config.CsrfConfigurationProperties;
 import com.oracle.hospitality.hdp.gateway.model.RequestContext;
 import com.oracle.hospitality.hdp.gateway.service.CsrfTokenValidator;
-import io.micrometer.common.util.StringUtils;
+import org.springframework.util.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
-import org.jspecify.annotations.NonNull;
-import org.jspecify.annotations.Nullable;
+
 import org.slf4j.event.Level;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -58,8 +57,7 @@ public class RequestInspectionFilter implements WebFilter, Ordered {
     }
 
     @Override
-    @NonNull
-    public Mono<Void> filter(@NonNull ServerWebExchange exchange, @NonNull WebFilterChain chain) {
+    public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
         try {
             inspectRequest(exchange);
         } catch (CsrfValidationException e) {
@@ -84,7 +82,7 @@ public class RequestInspectionFilter implements WebFilter, Ordered {
         val hotelId = normalizeHotelId(getHotelIdFromHeaders(headers));
         val enterpriseId = normalizeEnterpriseId(headers.getFirst(HDR_NAME_ENTERPRISE_ID));
         val tracingKey = getOrGenerateTraceId(headers);
-        boolean cookiePresent = headers.containsKey(HttpHeaders.COOKIE);
+        boolean cookiePresent = headers.getFirst(HttpHeaders.COOKIE) != null;
 
         // --- CSRF Validation ---
         validateCsrf(exchange, headers, cookiePresent);
@@ -92,14 +90,14 @@ public class RequestInspectionFilter implements WebFilter, Ordered {
         RequestContext context = new RequestContext(
                 hotelId,
                 cookiePresent,
-                headers.containsKey(HttpHeaders.AUTHORIZATION),
+                headers.getFirst(HttpHeaders.AUTHORIZATION) != null,
                 headers.getFirst(HDR_NAME_SSD_ID),
                 headers.getFirst(HDR_NAME_TARGET_ENV),
                 tracingKey,
                 parseLogLevel(headers.getFirst(HDR_NAME_LOG_LEVEL)),
-                headers.keySet(),
+                new java.util.HashSet<>(headers.toSingleValueMap().keySet()),
                 enterpriseId,
-                Map.of(),
+                Collections.emptyMap(),
                 isServiceToService(headers));
 
         exchange.getAttributes().put("gatewayContext", context);
@@ -118,12 +116,12 @@ public class RequestInspectionFilter implements WebFilter, Ordered {
             String user = headers.getFirst("idcs_remote_user");
             String session = headers.getFirst("idcs_session_id");
 
-            if (StringUtils.isBlank(token))
+            if (!StringUtils.hasText(token))
                 throw new CsrfValidationException("missing_csrf_token", "CSRF token is required");
-            if (StringUtils.isBlank(user) || StringUtils.isBlank(session))
+            if (!StringUtils.hasText(user) || !StringUtils.hasText(session))
                 throw new CsrfValidationException("missing_identity_headers", "User identity headers missing");
 
-            var result = csrfTokenValidator.validate(token, headers, user, session);
+            CsrfTokenValidator.ValidationResult result = csrfTokenValidator.validate(token, headers, user, session);
             if (!result.isValid())
                 throw new CsrfValidationException("invalid_csrf_token", result.getReason());
         }
@@ -164,7 +162,7 @@ public class RequestInspectionFilter implements WebFilter, Ordered {
 
     private ServerWebExchange mutateRequest(ServerWebExchange exchange, RequestContext context) {
         return exchange.mutate().request(builder -> {
-            if (StringUtils.isBlank(exchange.getRequest().getHeaders().getFirst(HDR_NAME_REQUEST_ID))) {
+            if (!StringUtils.hasText(exchange.getRequest().getHeaders().getFirst(HDR_NAME_REQUEST_ID))) {
                 builder.header(HDR_NAME_REQUEST_ID, context.requestTraceId());
             }
         }).build();
@@ -172,10 +170,10 @@ public class RequestInspectionFilter implements WebFilter, Ordered {
 
     private boolean isServiceToService(HttpHeaders headers) {
         // Simple heuristic: Auth header present and no Cookie
-        return headers.containsKey(HttpHeaders.AUTHORIZATION) && !headers.containsKey(HttpHeaders.COOKIE);
+        return headers.getFirst(HttpHeaders.AUTHORIZATION) != null && headers.getFirst(HttpHeaders.COOKIE) == null;
     }
 
-    private boolean isUnsafeMethod(@Nullable HttpMethod method) {
+    private boolean isUnsafeMethod(HttpMethod method) {
         return method != null && (method == HttpMethod.POST || method == HttpMethod.PUT ||
                 method == HttpMethod.PATCH || method == HttpMethod.DELETE);
     }
@@ -187,11 +185,11 @@ public class RequestInspectionFilter implements WebFilter, Ordered {
     }
 
     private String normalizeHotelId(String id) {
-        return (id == null || id.isBlank() || id.equals(NON_SHARDED_ROUTING_HOTEL_ID)) ? null : id;
+        return (id == null || id.trim().isEmpty() || id.equals(NON_SHARDED_ROUTING_HOTEL_ID)) ? null : id;
     }
 
     private String normalizeEnterpriseId(String id) {
-        return (id == null || id.isBlank()) ? null : id.toUpperCase().trim();
+        return (id == null || id.trim().isEmpty()) ? null : id.toUpperCase().trim();
     }
 
     private Level parseLogLevel(String level) {
@@ -204,8 +202,8 @@ public class RequestInspectionFilter implements WebFilter, Ordered {
 
     private String getOrGenerateTraceId(HttpHeaders headers) {
         String id = headers.getFirst(HDR_NAME_REQUEST_ID);
-        if (StringUtils.isBlank(id))
+        if (!StringUtils.hasText(id))
             id = headers.getFirst(HDR_NAME_TRACING_KEY);
-        return StringUtils.isBlank(id) ? UUID.randomUUID().toString() : id;
+        return !StringUtils.hasText(id) ? UUID.randomUUID().toString() : id;
     }
 }
