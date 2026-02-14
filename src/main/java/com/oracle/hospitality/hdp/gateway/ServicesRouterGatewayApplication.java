@@ -8,8 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
     org.springframework.cloud.autoconfigure.RefreshAutoConfiguration.class,
     org.springframework.cloud.client.discovery.simple.SimpleDiscoveryClientAutoConfiguration.class,
     org.springframework.cloud.client.discovery.simple.reactive.SimpleReactiveDiscoveryClientAutoConfiguration.class,
-    org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration.class,
-    org.springframework.cloud.gateway.config.GatewayAutoConfiguration.class
+    org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration.class
 })
 public class ServicesRouterGatewayApplication {
     public static void main(String[] args) {

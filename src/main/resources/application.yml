@@ -12,33 +12,29 @@ spring:
     compatibility-verifier:
       enabled: false
     gateway:
-      server:
-        webflux:
-          # Global CORS configuration
-          globalcors:
-            cors-configurations:
-              '[/**]':
-                allowedOrigins: "*"
-                allowedMethods:
-                  - GET
-                  - POST
-                  - PUT
-                  - PATCH
-                  - DELETE
-                  - OPTIONS
-                allowedHeaders: "*"
-                exposedHeaders:
-                  - X-CSRF-Token
-                maxAge: 3600
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - PATCH
+              - DELETE
+              - OPTIONS
+            allowedHeaders: "*"
+            exposedHeaders:
+              - X-CSRF-Token
+            maxAge: 3600
 
-          # Example routes - customize as needed
-          routes:
-            - id: example-service
-              uri: http://localhost:8081
-              predicates:
-                - Path=/api/**
-              filters:
-                - StripPrefix=1
+      routes:
+        - id: example-service
+          uri: http://localhost:8081
+          predicates:
+            - Path=/api/**
+          filters:
+            - StripPrefix=1
 
 # CSRF Protection Configuration
 csrf:

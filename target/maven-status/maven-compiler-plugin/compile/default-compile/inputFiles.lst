@@ -1,12 +1,13 @@
 C:\Users\LENOVO\OneDrive\Desktop\project Spring\src\main\java\com\oracle\hospitality\hdp\gateway\common\GatewayConstants.java
 C:\Users\LENOVO\OneDrive\Desktop\project Spring\src\main\java\com\oracle\hospitality\hdp\gateway\config\CsrfConfigurationProperties.java
 C:\Users\LENOVO\OneDrive\Desktop\project Spring\src\main\java\com\oracle\hospitality\hdp\gateway\config\CsrfSecurityConfig.java
-C:\Users\LENOVO\OneDrive\Desktop\project Spring\src\main\java\com\oracle\hospitality\hdp\gateway\config\MinimalGatewayConfig.java
+C:\Users\LENOVO\OneDrive\Desktop\project Spring\src\main\java\com\oracle\hospitality\hdp\gateway\config\ServerPropertiesCompatibilityConfig.java
 C:\Users\LENOVO\OneDrive\Desktop\project Spring\src\main\java\com\oracle\hospitality\hdp\gateway\filter\RequestInspectionFilter.java
 C:\Users\LENOVO\OneDrive\Desktop\project Spring\src\main\java\com\oracle\hospitality\hdp\gateway\model\RequestContext.java
 C:\Users\LENOVO\OneDrive\Desktop\project Spring\src\main\java\com\oracle\hospitality\hdp\gateway\service\CsrfTokenValidator.java
 C:\Users\LENOVO\OneDrive\Desktop\project Spring\src\main\java\com\oracle\hospitality\hdp\gateway\ServicesRouterGatewayApplication.java
 C:\Users\LENOVO\OneDrive\Desktop\project Spring\src\main\java\org\springframework\boot\autoconfigure\web\embedded\NettyWebServerFactoryCustomizer.java
 C:\Users\LENOVO\OneDrive\Desktop\project Spring\src\main\java\org\springframework\boot\autoconfigure\web\reactive\HttpHandlerAutoConfiguration.java
+C:\Users\LENOVO\OneDrive\Desktop\project Spring\src\main\java\org\springframework\boot\autoconfigure\web\reactive\WebFluxAutoConfiguration.java
 C:\Users\LENOVO\OneDrive\Desktop\project Spring\src\main\java\org\springframework\boot\autoconfigure\web\ServerProperties.java
 C:\Users\LENOVO\OneDrive\Desktop\project Spring\src\main\java\org\springframework\boot\web\embedded\netty\NettyServerCustomizer.java

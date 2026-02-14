@@ -1,0 +1,269 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (malloc) failed to allocate 1048576 bytes. Error detail: AllocateHeap
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   This process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+#   JVM is running with Zero Based Compressed Oops mode in which the Java heap is
+#     placed in the first 32GB address space. The Java Heap base address is the
+#     maximum limit for the native heap growth. Please use -XX:HeapBaseMinAddress
+#     to set the Java Heap base and to place the Java Heap above 32GB virtual address.
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (allocation.cpp:44), pid=28612, tid=9840
+#
+# JRE version:  (21.0.9+11) (build )
+# Java VM: OpenJDK 64-Bit Server VM (21.0.9+11-LTS, mixed mode, sharing, tiered, compressed oops, compressed class ptrs, g1 gc, windows-amd64)
+# No core dump will be written. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: --enable-native-access=ALL-UNNAMED 
+
+Host: 13th Gen Intel(R) Core(TM) i5-13450HX, 16 cores, 23G,  Windows 11 , 64 bit Build 26100 (10.0.26100.7705)
+Time: Sat Feb 14 00:41:41 2026 India Standard Time elapsed time: 3.031414 seconds (0d 0h 0m 3s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00000248395acdf0):  JavaThread "Unknown thread" [_thread_in_vm, id=9840, stack(0x000000adcdf00000,0x000000adce000000) (1024K)]
+
+Stack: [0x000000adcdf00000,0x000000adce000000]
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x6da199]
+V  [jvm.dll+0x8b7861]
+V  [jvm.dll+0x8b9c7e]
+V  [jvm.dll+0x8ba363]
+V  [jvm.dll+0x285a46]
+V  [jvm.dll+0xc1187]
+V  [jvm.dll+0x33a815]
+V  [jvm.dll+0x332e61]
+V  [jvm.dll+0x87fe29]
+V  [jvm.dll+0x3c5471]
+V  [jvm.dll+0x868dc3]
+V  [jvm.dll+0x45990e]
+V  [jvm.dll+0x45b591]
+C  [jli.dll+0x52a3]
+C  [ucrtbase.dll+0x37b0]
+C  [KERNEL32.DLL+0x2e8d7]
+C  [ntdll.dll+0x8c40c]
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x00007ffd86e4bd20, length=0, elements={
+}
+
+Java Threads: ( => current thread )
+Total: 0
+
+Other Threads:
+  0x00000248396015b0 WorkerThread "GC Thread#0"                     [id=15492, stack(0x000000adce000000,0x000000adce100000) (1024K)]
+
+[error occurred during error reporting (printing all threads), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ffd8652f450]
+VM state: not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x00007ffd86ec1720] Heap_lock - owner thread: 0x00000248395acdf0
+
+Heap address: 0x0000000684800000, size: 6072 MB, Compressed Oops mode: Zero based, Oop shift amount: 3
+
+CDS archive(s) mapped at: [0x0000000000000000-0x0000000000000000-0x0000000000000000), size 0, SharedBaseAddress: 0x0000000800000000, ArchiveRelocationMode: 1.
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 0, Narrow klass range: 0x0
+
+GC Precious Log:
+ CardTable entry size: 512
+ Card Set container configuration: InlinePtr #cards 4 size 8 Array Of Cards #cards 32 size 80 Howl #buckets 8 coarsen threshold 7372 Howl Bitmap #cards 1024 size 144 coarsen threshold 921 Card regions per heap region 1 cards per card region 8192
+
+Heap:
+ garbage-first heap   total 0K, used 0K [0x0000000684800000, 0x0000000800000000)
+  region size 4096K, 0 young (0K), 0 survivors (0K)
+
+[error occurred during error reporting (printing heap information), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ffd869238a9]
+GC Heap History (0 events):
+No events
+
+Dll operation events (1 events):
+Event: 1.015 Loaded shared library C:\Program Files\BellSoft\LibericaJDK-21\bin\java.dll
+
+Deoptimization events (0 events):
+No events
+
+Classes loaded (0 events):
+No events
+
+Classes unloaded (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+ZGC Phase Switch (0 events):
+No events
+
+VM Operations (0 events):
+No events
+
+Memory protections (0 events):
+No events
+
+Nmethod flushes (0 events):
+No events
+
+Events (0 events):
+No events
+
+
+Dynamic libraries:
+0x00007ff624e70000 - 0x00007ff624e7e000 	C:\Program Files\BellSoft\LibericaJDK-21\bin\java.exe
+0x00007ffdbeb60000 - 0x00007ffdbedc8000 	C:\Windows\SYSTEM32\ntdll.dll
+0x00007ffdbdc70000 - 0x00007ffdbdd39000 	C:\Windows\System32\KERNEL32.DLL
+0x00007ffdbc060000 - 0x00007ffdbc451000 	C:\Windows\System32\KERNELBASE.dll
+0x00007ffd321a0000 - 0x00007ffd3223f000 	c:\Users\LENOVO\AppData\Local\Programs\Trae\resources\app\modules\sandbox\x64\trae_sbox.dll
+0x00007ffdbb5c0000 - 0x00007ffdbb70b000 	C:\Windows\System32\ucrtbase.dll
+0x00007ffd8e180000 - 0x00007ffd8e19b000 	C:\Program Files\BellSoft\LibericaJDK-21\bin\VCRUNTIME140.dll
+0x00007ffd8e3e0000 - 0x00007ffd8e3f8000 	C:\Program Files\BellSoft\LibericaJDK-21\bin\jli.dll
+0x00007ffdbc9e0000 - 0x00007ffdbcba6000 	C:\Windows\System32\USER32.dll
+0x00007ffdbc030000 - 0x00007ffdbc057000 	C:\Windows\System32\win32u.dll
+0x00007ffdbd650000 - 0x00007ffdbd67b000 	C:\Windows\System32\GDI32.dll
+0x00007ffda14a0000 - 0x00007ffda1733000 	C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.26100.7824_none_3e0870b2e3345462\COMCTL32.dll
+0x00007ffdbc460000 - 0x00007ffdbc58b000 	C:\Windows\System32\gdi32full.dll
+0x00007ffdbc7c0000 - 0x00007ffdbc863000 	C:\Windows\System32\msvcp_win.dll
+0x00007ffdbd730000 - 0x00007ffdbd7d9000 	C:\Windows\System32\msvcrt.dll
+0x00007ffd5c340000 - 0x00007ffd5c3cf000 	c:\Users\LENOVO\AppData\Local\Programs\Trae\resources\app\modules\sandbox\x64\sbox_ipc.dll
+0x00007ffdbdd40000 - 0x00007ffdbdd71000 	C:\Windows\System32\IMM32.DLL
+0x00007ffdb9410000 - 0x00007ffdb9652000 	C:\Windows\SYSTEM32\dbghelp.dll
+0x00007ffdbe3f0000 - 0x00007ffdbe776000 	C:\Windows\System32\combase.dll
+0x00007ffdbea00000 - 0x00007ffdbeb18000 	C:\Windows\System32\RPCRT4.dll
+0x00007ffdbd990000 - 0x00007ffdbda67000 	C:\Windows\System32\OLEAUT32.dll
+0x00007ffd9f450000 - 0x00007ffd9f48b000 	C:\Windows\SYSTEM32\dbgcore.DLL
+0x00007ffd8e3d0000 - 0x00007ffd8e3dc000 	C:\Program Files\BellSoft\LibericaJDK-21\bin\vcruntime140_1.dll
+0x00007ffd8e0f0000 - 0x00007ffd8e17e000 	C:\Program Files\BellSoft\LibericaJDK-21\bin\msvcp140.dll
+0x00007ffd861f0000 - 0x00007ffd86fa3000 	C:\Program Files\BellSoft\LibericaJDK-21\bin\server\jvm.dll
+0x00007ffdbd330000 - 0x00007ffdbd3e4000 	C:\Windows\System32\ADVAPI32.dll
+0x00007ffdbc900000 - 0x00007ffdbc9a6000 	C:\Windows\System32\sechost.dll
+0x00007ffdbd5d0000 - 0x00007ffdbd644000 	C:\Windows\System32\WS2_32.dll
+0x00007ffdba020000 - 0x00007ffdba07e000 	C:\Windows\SYSTEM32\POWRPROF.dll
+0x00007ffdb25e0000 - 0x00007ffdb2615000 	C:\Windows\SYSTEM32\WINMM.dll
+0x00007ffdb2220000 - 0x00007ffdb222b000 	C:\Windows\SYSTEM32\VERSION.dll
+0x00007ffdba000000 - 0x00007ffdba014000 	C:\Windows\SYSTEM32\UMPDC.dll
+0x00007ffdba2e0000 - 0x00007ffdba2fb000 	C:\Windows\SYSTEM32\kernel.appcore.dll
+0x00007ffd8e0e0000 - 0x00007ffd8e0ea000 	C:\Program Files\BellSoft\LibericaJDK-21\bin\jimage.dll
+0x00007ffdbb710000 - 0x00007ffdbb7b5000 	C:\Windows\System32\bcryptPrimitives.dll
+0x00007ffd8e0a0000 - 0x00007ffd8e0bf000 	C:\Program Files\BellSoft\LibericaJDK-21\bin\java.dll
+
+JVMTI agents: none
+
+dbghelp: loaded successfully - version: 4.0.5 - missing functions: none
+symbol engine: initialized successfully - sym options: 0x614 - pdb path: .;C:\Program Files\BellSoft\LibericaJDK-21\bin;C:\Windows\SYSTEM32;c:\Users\LENOVO\AppData\Local\Programs\Trae\resources\app\modules\sandbox\x64;C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.26100.7824_none_3e0870b2e3345462;C:\Program Files\BellSoft\LibericaJDK-21\bin\server
+
+VM Arguments:
+jvm_args: --enable-native-access=ALL-UNNAMED 
+java_command: <unknown>
+java_class_path (initial): <not set>
+Launcher Type: SUN_STANDARD
+
+[Global flags]
+     intx CICompilerCount                          = 12                                        {product} {ergonomic}
+     uint ConcGCThreads                            = 3                                         {product} {ergonomic}
+     uint G1ConcRefinementThreads                  = 13                                        {product} {ergonomic}
+   size_t G1HeapRegionSize                         = 4194304                                   {product} {ergonomic}
+    uintx GCDrainStackTargetSize                   = 64                                        {product} {ergonomic}
+   size_t InitialHeapSize                          = 398458880                                 {product} {ergonomic}
+   size_t MarkStackSize                            = 4194304                                   {product} {ergonomic}
+   size_t MaxHeapSize                              = 6366953472                                {product} {ergonomic}
+   size_t MinHeapDeltaBytes                        = 4194304                                   {product} {ergonomic}
+   size_t MinHeapSize                              = 8388608                                   {product} {ergonomic}
+    uintx NonNMethodCodeHeapSize                   = 7602480                                {pd product} {ergonomic}
+    uintx NonProfiledCodeHeapSize                  = 122027880                              {pd product} {ergonomic}
+    uintx ProfiledCodeHeapSize                     = 122027880                              {pd product} {ergonomic}
+    uintx ReservedCodeCacheSize                    = 251658240                              {pd product} {ergonomic}
+     bool SegmentedCodeCache                       = true                                      {product} {ergonomic}
+   size_t SoftMaxHeapSize                          = 6366953472                             {manageable} {ergonomic}
+     bool UseCompressedOops                        = true                           {product lp64_product} {ergonomic}
+     bool UseG1GC                                  = true                                      {product} {ergonomic}
+     bool UseLargePagesIndividualAllocation        = false                                  {pd product} {ergonomic}
+
+Logging:
+Log output configuration:
+ #0: stdout all=warning uptime,level,tags foldmultilines=false
+ #1: stderr all=off uptime,level,tags foldmultilines=false
+
+Release file:
+<release file has not been read>
+Environment Variables:
+JAVA_HOME=C:\Program Files\BellSoft\LibericaJDK-21\
+PATH=c:\\Users\\LENOVO\\.trae\\tools\\trae-gopls\\current;c:\\Users\\LENOVO\\.trae\\sdks\\workspaces\\d2796560\\versions\\node\\current;c:\\Users\\LENOVO\\.trae\\sdks\\versions\\node\\current;c:\Users\LENOVO\.trae\tools\trae-gopls\current;c:\Users\LENOVO\.trae\sdks\workspaces\d2796560\versions\node\current;c:\Users\LENOVO\.trae\sdks\versions\node\current;C:\Program Files (x86)\Microsoft\Edge\Application;C:\Program Files\BellSoft\LibericaJDK-21\bin\;C:\Program Files (x86)\Common Files\Oracle\Java\java8path;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Python313\Scripts\;C:\Python313\;C:\Program Files\Eclipse Adoptium\jdk-17.0.13.11-hotspot\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Program Files\dotnet\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Users\avanish0210\AppData\Local\Programs\Python\Python3x\Scripts;C:\Program Files\apache-maven-3.9.11\bin;C:\Program Files\gradle-6.6\bin;C:\Program Files\Docker\Docker\resources\bin;C:\Users\LENOVO\.cargo\bin;C:\Users\LENOVO\AppData\Local\Microsoft\WindowsApps;C:\Users\LENOVO\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\LENOVO\AppData\Roaming\npm;C:\Users\LENOVO\AppData\Local\Microsoft\WinGet\Packages\Schniz.fnm_Microsoft.Winget.Source_8wekyb3d8bbwe;C:\msys64\ucrt64\bin;C:\Users\LENOVO\.dotnet\tools;C:\Program Files\JetBrains\IntelliJ IDEA 2025.2.3\bin;C:\Users\LENOVO\AppData\Local\JetBrains\Toolbox\scripts;C:\Users\LENOVO\AppData\Local\Programs\Antigravity\bin
+USERNAME=LENOVO
+LANG=en_US.UTF-8
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 183 Stepping 1, GenuineIntel
+TMP=C:\Users\LENOVO\AppData\Local\Temp
+TEMP=C:\Users\LENOVO\AppData\Local\Temp
+
+
+
+
+Periodic native trim disabled
+
+---------------  S Y S T E M  ---------------
+
+OS:
+ Windows 11 , 64 bit Build 26100 (10.0.26100.7705)
+OS uptime: 0 days 3:32 hours
+Hyper-V role detected
+
+CPU: total 16 (initial active 16) (8 cores per cpu, 2 threads per core) family 6 model 183 stepping 1 microcode 0x12e, cx8, cmov, fxsr, ht, mmx, 3dnowpref, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, lzcnt, tsc, tscinvbit, avx, avx2, aes, erms, clmul, bmi1, bmi2, adx, sha, fma, vzeroupper, clflush, clflushopt, clwb, hv, serialize, rdtscp, rdpid, fsrm, f16c, cet_ibt, cet_ss
+Processor Information for processor 0
+  Max Mhz: 2400, Current Mhz: 2400, Mhz Limit: 2400
+Processor Information for processor 1
+  Max Mhz: 2400, Current Mhz: 1520, Mhz Limit: 2400
+Processor Information for processor 2
+  Max Mhz: 2400, Current Mhz: 2400, Mhz Limit: 2400
+Processor Information for processor 3
+  Max Mhz: 2400, Current Mhz: 2400, Mhz Limit: 2400
+Processor Information for processor 4
+  Max Mhz: 2400, Current Mhz: 2400, Mhz Limit: 2400
+Processor Information for processor 5
+  Max Mhz: 2400, Current Mhz: 1520, Mhz Limit: 2400
+Processor Information for processor 6
+  Max Mhz: 2400, Current Mhz: 1520, Mhz Limit: 2400
+Processor Information for processor 7
+  Max Mhz: 2400, Current Mhz: 2400, Mhz Limit: 2400
+Processor Information for processor 8
+  Max Mhz: 2400, Current Mhz: 1520, Mhz Limit: 2400
+Processor Information for processor 9
+  Max Mhz: 2400, Current Mhz: 2400, Mhz Limit: 2400
+Processor Information for processor 10
+  Max Mhz: 2400, Current Mhz: 2400, Mhz Limit: 2400
+Processor Information for processor 11
+  Max Mhz: 2400, Current Mhz: 2400, Mhz Limit: 2400
+Processor Information for processor 12
+  Max Mhz: 2400, Current Mhz: 1466, Mhz Limit: 2400
+Processor Information for processor 13
+  Max Mhz: 2400, Current Mhz: 1466, Mhz Limit: 2400
+Processor Information for processor 14
+  Max Mhz: 2400, Current Mhz: 1466, Mhz Limit: 2400
+Processor Information for processor 15
+  Max Mhz: 2400, Current Mhz: 1466, Mhz Limit: 2400
+
+Memory: 4k page, system-wide physical 24283M (6072M free)
+TotalPageFile size 24283M (AvailPageFile size 4M)
+current process WorkingSet (physical memory assigned to process): 14M, peak: 14M
+current process commit charge ("private bytes"): 64M, peak: 65M
+
+vm_info: OpenJDK 64-Bit Server VM (21.0.9+11-LTS) for windows-amd64 JRE (21.0.9+11-LTS), built on 2025-10-14T21:57:38Z by "hudson" with MS VC++ 17.1 (VS2022)
+
+END.
