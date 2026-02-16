@@ -90,6 +90,9 @@ generate-keys.bat
 copy keys\csrf-public-key.pem src\main\resources\keys\csrf-public-key.pem
 ```
 
+## Public/Private Key Usage
+The RSA public key used by the gateway is generated via the included script (`generate-keys.bat`), which invokes OpenSSL to create a 2048‑bit private key (`keys/csrf-private-keyO.pem`) and derive/install the matching public key (`keys/csrf-public-key.pem`). At runtime, the application reads only the public key from the path configured by `csrf.public-key-location` in `application.yml` (by default `classpath:keys/csrf-public-key.pem`); it is loaded by the configuration and used by the validator to verify RS256 signatures with JJWT. The private key is not used by the gateway in production. Instead, it belongs to the token issuer (for example, your authentication service) and must be kept secure and excluded from version control. Within this repository, a private key is referenced only in tests to sign tokens for integration testing. When generating a new pair, ensure the public key is accessible to the gateway (copy it into resources or point the property to its location) and never commit the private key.
+
 ## Build and Run
 ```bash
 # Build
